@@ -6,6 +6,10 @@ package com.jobsity.bowling.exception;
  */
 public class FrameCreationException extends RuntimeException {
 	
+	public FrameCreationException(String msg) {
+		super(msg);
+	}
+
 	public FrameCreationException(Throwable throwable) {
 		super(throwable);
 	}

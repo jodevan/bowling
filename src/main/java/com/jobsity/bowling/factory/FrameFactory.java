@@ -1,7 +1,11 @@
 package com.jobsity.bowling.factory;
 
 import com.jobsity.bowling.exception.FrameCreationException;
+import com.jobsity.bowling.frame.FinalFrame;
 import com.jobsity.bowling.frame.Frame;
+import com.jobsity.bowling.frame.SingleFrame;
+import com.jobsity.bowling.frame.SpareFrame;
+import com.jobsity.bowling.frame.StrikeFrame;
 
 /**
  *
@@ -9,12 +13,34 @@ import com.jobsity.bowling.frame.Frame;
  */
 public class FrameFactory {
 	
-//	public static Frame createFrame(int... chances) 
-//			throws FrameCreationException {
-//		if (chances == null) {
-//			throw new FrameCreationException("Chances has to be specified");
-//		}
-//		if (chances.length ==)
-//	}
-	
+	public static Frame newInstance(Frame nextFrame,  int... externalChances) {
+
+		int[] chances = externalChances != null ? externalChances : new int[]{};
+
+		if (nextFrame == null) {
+			switch (chances.length) {
+				case 2:
+					return new FinalFrame(chances[0], chances[1]);
+				case 3:
+					return new FinalFrame(chances[0], chances[1], chances[2]);
+			}
+		} else {
+			switch (chances.length) {
+				case 0:
+					return new StrikeFrame();
+				case 1:
+					if (chances[0] == Frame.MAX_SCORE) {
+						return new StrikeFrame();
+					}
+					break;
+				case 2:
+					if (chances[0] + chances[1] == Frame.MAX_SCORE) {
+						return new SpareFrame(chances[0]);
+					} else {
+						return new SingleFrame(chances[0], chances[1]);
+					}
+			}
+		}
+		throw new FrameCreationException("Invalid parameters");
+	}
 }
