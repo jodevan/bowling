@@ -15,7 +15,7 @@ public class StrikeFrameValidator extends DefaultChanceValidator {
 			return false;
 		}
 		
-		if (chances.length != 1 && chances[0] != Frame.MAX_SCORE) {
+		if (chances.length != 1 || chances[0] != Frame.MAX_SCORE) {
 			return false;
 		}
 		

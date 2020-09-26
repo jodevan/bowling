@@ -12,11 +12,6 @@ import org.junit.runner.RunWith;
 @RunWith(JUnit4ClassRunner.class)
 public class SpareFrameTest {
 
-	@Test
-	public void mock() {
-		assertTrue(true);
-	}
-
 //	@Test
 //	public void testCalcWithoutNextFrame() {
 //		Frame spareFrame = new SpareFrame(1);

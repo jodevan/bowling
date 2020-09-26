@@ -8,9 +8,10 @@ import java.util.Arrays;
  * @author jodevan
  */
 public class SimpleFrame extends Frame {
-	
+
 	public SimpleFrame(Frame nextFrame, int chance1, int chance2) {
-		super(new int[]{chance1, chance2}, nextFrame, new SimpleFrameValidator());
+		super(new int[]{chance1, chance2}, 
+				nextFrame, new SimpleFrameValidator());
 	}
 
 	@Override

@@ -1,6 +1,6 @@
 package com.jobsity.bowling.frame;
 
-import com.jobsity.bowling.validator.SpareFrameValidator;
+import com.jobsity.bowling.validator.StrikeFrameValidator;
 
 /**
  *
@@ -9,7 +9,7 @@ import com.jobsity.bowling.validator.SpareFrameValidator;
 public class StrikeFrame extends Frame {
 
 	public StrikeFrame(Frame nextFrame) {
-		super(new int[]{Frame.MAX_SCORE}, nextFrame, new SpareFrameValidator());
+		super(new int[]{Frame.MAX_SCORE}, nextFrame, new StrikeFrameValidator());
 	}
 
 	@Override

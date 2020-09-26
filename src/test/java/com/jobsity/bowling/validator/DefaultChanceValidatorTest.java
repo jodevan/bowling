@@ -3,10 +3,10 @@ package com.jobsity.bowling.validator;
 import static org.junit.Assert.*;
 
 import com.jobsity.bowling.frame.Frame;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.internal.runners.JUnit4ClassRunner;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 
 /**
  *
@@ -15,18 +15,10 @@ import org.junit.runner.RunWith;
 @RunWith(JUnit4ClassRunner.class)
 public class DefaultChanceValidatorTest {
 	
-	private static DefaultChanceValidator defaultChanceValidator;
+	private DefaultChanceValidator defaultChanceValidator = 
+			Mockito.mock(DefaultChanceValidator.class, 
+					Mockito.CALLS_REAL_METHODS);
 	
-	@BeforeClass
-	public static void init() {
-		defaultChanceValidator = new DefaultChanceValidator() {
-			@Override
-			public boolean isValid(Frame frame, int... chances) {
-				return true;
-			}
-		};
-	}
-
 	@Test
 	public void testNegativeChance() {
 		assertFalse(defaultChanceValidator.isChanceValid(-1));

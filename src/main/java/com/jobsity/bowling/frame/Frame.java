@@ -21,7 +21,7 @@ public abstract class Frame {
 		if (validator == null) {
 			throw new FrameCreationException("Validator can't be null");
 		}
-		if (!validator.isValid(this)) {
+		if (!validator.isValid(nextFrame, chances)) {
 			throw new FrameCreationException("Invalid parameters");
 		}
 	}

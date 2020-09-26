@@ -9,7 +9,8 @@ import com.jobsity.bowling.validator.SpareFrameValidator;
 public class SpareFrame extends Frame {
 	
 	public SpareFrame(Frame nextFrame, int chance) {
-		super(new int[]{chance, Frame.MAX_SCORE - chance}, nextFrame, new SpareFrameValidator());
+		super(new int[]{chance, Frame.MAX_SCORE - chance}, 
+				nextFrame, new SpareFrameValidator());
 	}
 
 	@Override

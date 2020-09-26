@@ -14,22 +14,15 @@ public class SpareFrameValidator extends DefaultChanceValidator {
 			return false;
 		}
 		
-		int chance1 = 0;
-		int chance2 = 0;
-		
-		switch(chances.length) {
-			case 1:
-				chance1 = chances[0];
-				break;
-			case 2:
-				chance1 = chances[0];
-				chance2 = chances[1];
-				break;
-			default:
-				return false;
+		if (chances.length != 2) {
+			return false;
 		}
 		
-		if (!isChanceValid(chance1, Frame.MAX_SCORE - 1)) {
+		int chance1 = chances[0];
+		int chance2 = chances[1];
+		
+		if (!isChanceValid(chance1, Frame.MAX_SCORE - 1)
+				|| !isChanceValid(chance1, Frame.MAX_SCORE)) {
 			return false;
 		}
 		
