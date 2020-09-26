@@ -1,5 +1,6 @@
 package com.jobsity.bowling.frame;
 
+import com.jobsity.bowling.exception.FrameCreationException;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.internal.runners.JUnit4ClassRunner;
@@ -11,6 +12,21 @@ import org.junit.runner.RunWith;
  */
 @RunWith(JUnit4ClassRunner.class)
 public class SingleFrameTest {
+	
+	@Test(expected = FrameCreationException.class)
+	public void expectFirstChanceInvalid() {
+		new SingleFrame(11, 5);
+	}
+
+	@Test(expected = FrameCreationException.class)
+	public void expectSecondChanceInvalid() {
+		new SingleFrame(0, -10);
+	}
+
+	@Test(expected = FrameCreationException.class)
+	public void expectSumChancesValuesInvalid() {
+		new SingleFrame(5, 6);
+	}
 
 	@Test
 	public void testCalc() {
@@ -19,8 +35,5 @@ public class SingleFrameTest {
 
 		singleFrame = new SingleFrame(0, 8);
 		assertEquals(8, singleFrame.calcScore());
-
-		singleFrame = new SingleFrame(Frame.MAX_SCORE, 9, 4);
-		assertEquals(23, singleFrame.calcScore());
 	}
 }

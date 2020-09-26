@@ -21,15 +21,15 @@ public class StrikeFrameTest {
 	@Test
 	public void testCalcWithNextSimpleFrame() {
 		Frame strikeFrame = new StrikeFrame();
-		strikeFrame.setNextFrame(new SingleFrame(4, 8));
-		assertEquals(22, strikeFrame.calcScore());
+		strikeFrame.setNextFrame(new SingleFrame(4, 5));
+		assertEquals(19, strikeFrame.calcScore());
 
 		strikeFrame = new StrikeFrame();
-		strikeFrame.setNextFrame(new SingleFrame(5, 6, Frame.MAX_SCORE));
-		assertEquals(21, strikeFrame.calcScore());
+		strikeFrame.setNextFrame(new FinalFrame(5, 5, Frame.MAX_SCORE));
+		assertEquals(20, strikeFrame.calcScore());
 
 		strikeFrame = new StrikeFrame();
-		strikeFrame.setNextFrame(new SingleFrame(Frame.MAX_SCORE, 5, 2));
+		strikeFrame.setNextFrame(new FinalFrame(Frame.MAX_SCORE, 5, 2));
 		assertEquals(25, strikeFrame.calcScore());
 	}
 

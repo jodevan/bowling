@@ -21,15 +21,15 @@ public class SpareFrameTest {
 	@Test
 	public void testCalcWithNextSimpleFrame() {
 		Frame spareFrame = new SpareFrame(8);
-		spareFrame.setNextFrame(new SingleFrame(4, 6));
+		spareFrame.setNextFrame(new SingleFrame(4, 5));
 		assertEquals(14, spareFrame.calcScore());
 
 		spareFrame = new SpareFrame(8);
-		spareFrame.setNextFrame(new SingleFrame(9, 6, Frame.MAX_SCORE));
+		spareFrame.setNextFrame(new FinalFrame(9, 1, Frame.MAX_SCORE));
 		assertEquals(19, spareFrame.calcScore());
 
 		spareFrame = new SpareFrame(9);
-		spareFrame.setNextFrame(new SingleFrame(Frame.MAX_SCORE, 5, 2));
+		spareFrame.setNextFrame(new FinalFrame(Frame.MAX_SCORE, 5, 2));
 		assertEquals(20, spareFrame.calcScore());
 	}
 
