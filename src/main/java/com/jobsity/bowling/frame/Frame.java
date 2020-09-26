@@ -12,7 +12,15 @@ public abstract class Frame {
 	protected Frame nextFrame;
 
 	public abstract int calcScore();
+	
+	public boolean isChanceValid(int chance) {
+		return isChanceValid(chance, Frame.MAX_SCORE);
+	}
 
+	public boolean isChanceValid(int chance, int maxChanceAllowedValue) {
+		return chance >= 0 && chance <= maxChanceAllowedValue;
+	}
+	
 	public int[] getChances() {
 		return chances;
 	}
