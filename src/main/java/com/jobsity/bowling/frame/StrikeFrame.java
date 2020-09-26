@@ -1,14 +1,15 @@
 package com.jobsity.bowling.frame;
 
+import com.jobsity.bowling.validator.SpareFrameValidator;
+
 /**
  *
  * @author jodevan
  */
-public class StrikeFrame extends LookAheadFrame {
+public class StrikeFrame extends Frame {
 
 	public StrikeFrame(Frame nextFrame) {
-		super(nextFrame);
-		chances = new int[]{Frame.MAX_SCORE};
+		super(new int[]{Frame.MAX_SCORE}, nextFrame, new SpareFrameValidator());
 	}
 
 	@Override

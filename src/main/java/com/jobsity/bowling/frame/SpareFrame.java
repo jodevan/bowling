@@ -1,27 +1,15 @@
 package com.jobsity.bowling.frame;
 
-import com.jobsity.bowling.exception.FrameCreationException;
-import com.jobsity.bowling.exception.InvalidChanceException;
+import com.jobsity.bowling.validator.SpareFrameValidator;
 
 /**
  *
  * @author jodevan
  */
-public class SpareFrame extends LookAheadFrame {
+public class SpareFrame extends Frame {
 	
-	public SpareFrame(Frame nextFrame) {
-		super(nextFrame);
-	}
-
 	public SpareFrame(Frame nextFrame, int chance) {
-		super(nextFrame);
-		
-		if (!isChanceValid(chance)) {
-			throw new FrameCreationException(
-					new InvalidChanceException(Frame.MAX_SCORE - 1));
-		}
-		
-		chances = new int[]{chance, Frame.MAX_SCORE - chance};
+		super(new int[]{chance, Frame.MAX_SCORE - chance}, nextFrame, new SpareFrameValidator());
 	}
 
 	@Override

@@ -27,17 +27,18 @@ public class FrameFactory {
 		} else {
 			switch (chances.length) {
 				case 0:
-					return new StrikeFrame();
+					return new StrikeFrame(nextFrame);
 				case 1:
 					if (chances[0] == Frame.MAX_SCORE) {
-						return new StrikeFrame();
+						return new StrikeFrame(nextFrame);
 					}
 					break;
 				case 2:
 					if (chances[0] + chances[1] == Frame.MAX_SCORE) {
-						return new SpareFrame(chances[0]);
+						return new SpareFrame(nextFrame, chances[0]);
 					} else {
-						return new SimpleFrame(chances[0], chances[1]);
+						return new SimpleFrame(
+								nextFrame, chances[0], chances[1]);
 					}
 			}
 		}
