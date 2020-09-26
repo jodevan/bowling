@@ -23,10 +23,7 @@ public class SpareFrame extends Frame {
 		int nextFrameChance = 0;
 
 		if (nextFrame != null) {
-			int[] chances = nextFrame.getChances();
-			if (chances.length > 0) {
-				nextFrameChance = chances[0];
-			}
+			nextFrameChance = nextFrame.getChances()[0];
 		}
 
 		// A spare always counts 10;
