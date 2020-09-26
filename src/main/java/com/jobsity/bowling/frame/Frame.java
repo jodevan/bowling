@@ -1,20 +1,27 @@
 package com.jobsity.bowling.frame;
 
-import com.jobsity.bowling.frame.calc.CalcBehavior;
-import lombok.Data;
-
 /**
  *
  * @author jodevan
  */
-@Data
 public abstract class Frame {
 
-	protected CalcBehavior calcBehavior;
-	private int[] chances;
-	private Frame nextFrame;
+	public static final int MAX_SCORE = 10;
 
-	public int calcScore() {
-		return calcBehavior.calc(this);
+	protected int[] chances = new int[]{};
+	protected Frame nextFrame;
+
+	public abstract int calcScore();
+
+	public int[] getChances() {
+		return chances;
+	}
+
+	public Frame getNextFrame() {
+		return nextFrame;
+	}
+
+	public void setNextFrame(Frame nextFrame) {
+		this.nextFrame = nextFrame;
 	}
 }

@@ -1,6 +1,6 @@
 package com.jobsity.bowling.frame;
 
-import com.jobsity.bowling.frame.calc.impl.SingleFrameCalc;
+import java.util.Arrays;
 
 /**
  *
@@ -8,7 +8,17 @@ import com.jobsity.bowling.frame.calc.impl.SingleFrameCalc;
  */
 public class SingleFrame extends Frame {
 
-	public SingleFrame() {
-		calcBehavior = new SingleFrameCalc();
-	}	
+	public SingleFrame(int chance1, int chance2) {
+		chances = new int[]{chance1, chance2};
+	}
+
+	public SingleFrame(int chance1, int chance2, int chance3) {
+		chances = new int[]{chance1, chance2, chance3};
+	}
+
+	@Override
+	public int calcScore() {
+		return Arrays.stream(chances)
+				.reduce(0, (chance1, chance2) -> chance1 + chance2);
+	}
 }
