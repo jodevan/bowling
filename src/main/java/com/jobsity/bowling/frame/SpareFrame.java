@@ -1,5 +1,8 @@
 package com.jobsity.bowling.frame;
 
+import com.jobsity.bowling.exception.FrameCreationException;
+import com.jobsity.bowling.exception.InvalidChanceException;
+
 /**
  *
  * @author jodevan
@@ -7,7 +10,12 @@ package com.jobsity.bowling.frame;
 public class SpareFrame extends Frame {
 
 	public SpareFrame(int chance) {
-		chances = new int[]{chance, 10 - chance};
+		if (!isChanceValid(chance)) {
+			throw new FrameCreationException(
+					new InvalidChanceException(Frame.MAX_SCORE - 1));
+		}
+		
+		chances = new int[]{chance, Frame.MAX_SCORE - chance};
 	}
 
 	@Override

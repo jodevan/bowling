@@ -15,9 +15,9 @@ public class FinalFrame extends SingleFrame {
 	}
 	
 	public FinalFrame(int chance1, int chance2, int chance3) {
-		if (!isChanceValid(chance1, Frame.MAX_SCORE)
-				|| !isChanceValid(chance2, Frame.MAX_SCORE)
-				|| !isChanceValid(chance3, Frame.MAX_SCORE)) {
+		if (!isChanceValid(chance1)
+				|| !isChanceValid(chance2)
+				|| !isChanceValid(chance3)) {
 			throw new FrameCreationException(
 					new InvalidChanceException(Frame.MAX_SCORE));
 		}
