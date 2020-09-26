@@ -15,25 +15,25 @@ public class SingleFrameTest {
 	
 	@Test(expected = FrameCreationException.class)
 	public void expectFirstChanceInvalid() {
-		new SingleFrame(11, 5);
+		new SimpleFrame(11, 5);
 	}
 
 	@Test(expected = FrameCreationException.class)
 	public void expectSecondChanceInvalid() {
-		new SingleFrame(0, -10);
+		new SimpleFrame(0, -10);
 	}
 
 	@Test(expected = FrameCreationException.class)
 	public void expectSumChancesValuesInvalid() {
-		new SingleFrame(5, 6);
+		new SimpleFrame(5, 6);
 	}
 
 	@Test
 	public void testCalc() {
-		Frame singleFrame = new SingleFrame(1, 5);
+		Frame singleFrame = new SimpleFrame(1, 5);
 		assertEquals(6, singleFrame.calcScore());
 
-		singleFrame = new SingleFrame(0, 8);
+		singleFrame = new SimpleFrame(0, 8);
 		assertEquals(8, singleFrame.calcScore());
 	}
 }

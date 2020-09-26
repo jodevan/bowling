@@ -9,12 +9,15 @@ import java.util.Arrays;
  *
  * @author jodevan
  */
-public class SingleFrame extends Frame {
-
-	public SingleFrame() {
+public class SimpleFrame extends LookAheadFrame {
+	
+	public SimpleFrame(Frame nextFrame) {
+		super(nextFrame);
 	}
 
-	public SingleFrame(int chance1, int chance2) {
+	public SimpleFrame(Frame nextFrame, int chance1, int chance2) {
+		super(nextFrame);
+		
 		if (!isChanceValid(chance1) || !isChanceValid(chance2)) {
 			throw new FrameCreationException(
 					new InvalidChanceException(Frame.MAX_SCORE - 1));

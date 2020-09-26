@@ -7,9 +7,15 @@ import com.jobsity.bowling.exception.InvalidChanceException;
  *
  * @author jodevan
  */
-public class SpareFrame extends Frame {
+public class SpareFrame extends LookAheadFrame {
+	
+	public SpareFrame(Frame nextFrame) {
+		super(nextFrame);
+	}
 
-	public SpareFrame(int chance) {
+	public SpareFrame(Frame nextFrame, int chance) {
+		super(nextFrame);
+		
 		if (!isChanceValid(chance)) {
 			throw new FrameCreationException(
 					new InvalidChanceException(Frame.MAX_SCORE - 1));
@@ -20,13 +26,7 @@ public class SpareFrame extends Frame {
 
 	@Override
 	public int calcScore() {
-		int nextFrameChance = 0;
-
-		if (nextFrame != null) {
-			nextFrameChance = nextFrame.getChances()[0];
-		}
-
 		// A spare always counts 10;
-		return Frame.MAX_SCORE + nextFrameChance;
+		return Frame.MAX_SCORE + nextFrame.getChances()[0];
 	}
 }

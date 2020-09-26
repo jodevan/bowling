@@ -21,7 +21,7 @@ public class StrikeFrameTest {
 	@Test
 	public void testCalcWithNextSimpleFrame() {
 		Frame strikeFrame = new StrikeFrame();
-		strikeFrame.setNextFrame(new SingleFrame(4, 5));
+		strikeFrame.setNextFrame(new SimpleFrame(4, 5));
 		assertEquals(19, strikeFrame.calcScore());
 
 		strikeFrame = new StrikeFrame();

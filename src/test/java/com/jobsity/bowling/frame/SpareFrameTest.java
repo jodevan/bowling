@@ -21,7 +21,7 @@ public class SpareFrameTest {
 	@Test
 	public void testCalcWithNextSimpleFrame() {
 		Frame spareFrame = new SpareFrame(8);
-		spareFrame.setNextFrame(new SingleFrame(4, 5));
+		spareFrame.setNextFrame(new SimpleFrame(4, 5));
 		assertEquals(14, spareFrame.calcScore());
 
 		spareFrame = new SpareFrame(8);

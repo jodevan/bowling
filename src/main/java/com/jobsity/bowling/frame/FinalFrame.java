@@ -8,13 +8,18 @@ import com.jobsity.bowling.exception.InvalidChancesException;
  *
  * @author jodevan
  */
-public class FinalFrame extends SingleFrame {
+public class FinalFrame extends Frame {
+	
+	public FinalFrame(Frame nextFrame) {
+		super(null);
+	}
 	
 	public FinalFrame(int chance1, int chance2) {
-		super(chance1, chance2);
+		super(null);
 	}
 	
 	public FinalFrame(int chance1, int chance2, int chance3) {
+		super(null);
 		if (!isChanceValid(chance1)
 				|| !isChanceValid(chance2)
 				|| !isChanceValid(chance3)) {

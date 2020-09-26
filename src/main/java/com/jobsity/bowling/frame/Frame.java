@@ -9,7 +9,11 @@ public abstract class Frame {
 	public static final int MAX_SCORE = 10;
 
 	protected int[] chances = new int[]{};
-	protected Frame nextFrame;
+	protected final Frame nextFrame;
+	
+	protected Frame(Frame nextFrame) {
+		this.nextFrame = nextFrame;
+	}
 
 	public abstract int calcScore();
 	
@@ -27,9 +31,5 @@ public abstract class Frame {
 
 	public Frame getNextFrame() {
 		return nextFrame;
-	}
-
-	public void setNextFrame(Frame nextFrame) {
-		this.nextFrame = nextFrame;
 	}
 }
