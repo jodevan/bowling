@@ -1,9 +1,12 @@
 package com.jobsity.bowling.frame;
 
 import static org.junit.Assert.*;
+
+import com.jobsity.bowling.exception.FrameCreationException;
 import org.junit.Test;
 import org.junit.internal.runners.JUnit4ClassRunner;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 
 /**
  *
@@ -12,53 +15,55 @@ import org.junit.runner.RunWith;
 @RunWith(JUnit4ClassRunner.class)
 public class StrikeFrameTest {
 	
-	@Test
-	public void mock() {
-		assertTrue(true);
+	private Frame mockFrame = Mockito.mock(Frame.class);
+
+	@Test(expected = FrameCreationException.class)
+	public void expectNextFrameInvalid() {
+		new StrikeFrame(null);
 	}
 
+	@Test(expected = Test.None.class)
+	public void testValidFrame() {
+		new StrikeFrame(mockFrame);
+	}
+	
+	@Test
+	public void testCalcWithNextSimpleFrame() {
+		Frame nextSimpleFrame = new SimpleFrame(mockFrame, 2, 7);
+		Frame strikeFrame = new StrikeFrame(nextSimpleFrame);
+		assertEquals(19, strikeFrame.calcScore());
 
-//	@Test
-//	public void testCalcWithoutNextFrame() {
-//		Frame strikeFrame = new StrikeFrame();
-//		assertEquals(Frame.MAX_SCORE, strikeFrame.calcScore());
-//	}
-//
-//	@Test
-//	public void testCalcWithNextSimpleFrame() {
-//		Frame strikeFrame = new StrikeFrame();
-//		strikeFrame.setNextFrame(new SimpleFrame(4, 5));
-//		assertEquals(19, strikeFrame.calcScore());
-//
-//		strikeFrame = new StrikeFrame();
-//		strikeFrame.setNextFrame(new FinalFrame(5, 5, Frame.MAX_SCORE));
-//		assertEquals(20, strikeFrame.calcScore());
-//
-//		strikeFrame = new StrikeFrame();
-//		strikeFrame.setNextFrame(new FinalFrame(Frame.MAX_SCORE, 5, 2));
-//		assertEquals(25, strikeFrame.calcScore());
-//	}
-//
-//	@Test
-//	public void testCalcWithNextSpareFrame() {
-//		Frame strikeFrame = new StrikeFrame();
-//		strikeFrame.setNextFrame(new SpareFrame(7));
-//		assertEquals(20, strikeFrame.calcScore());
-//	}
-//
-//	@Test
-//	public void testCalcWithNextStrikeFrame() {
-//		Frame strikeFrame = new StrikeFrame();
-//		Frame nextStrikeFrame = new StrikeFrame();
-//		nextStrikeFrame.setNextFrame(new SpareFrame(6));
-//		strikeFrame.setNextFrame(nextStrikeFrame);
-//		assertEquals(26, strikeFrame.calcScore());
-//	}
-//
-//	@Test
-//	public void testCalcWithNextStrikeFrameWithoutNextFrame() {
-//		Frame strikeFrame = new StrikeFrame();
-//		strikeFrame.setNextFrame(new StrikeFrame());
-//		assertEquals(20, strikeFrame.calcScore());
-//	}
+		nextSimpleFrame = new SimpleFrame(mockFrame, 0, 2);
+		strikeFrame = new StrikeFrame(nextSimpleFrame);
+		assertEquals(12, strikeFrame.calcScore());
+
+		nextSimpleFrame = new SimpleFrame(mockFrame, 8, 1);
+		strikeFrame = new StrikeFrame(nextSimpleFrame);
+		assertEquals(19, strikeFrame.calcScore());
+	}
+
+	@Test
+	public void testCalcWithNextSpareFrame() {
+		Frame nextStrikeFrame = new SpareFrame(mockFrame, 5);
+		Frame strikeFrame = new StrikeFrame(nextStrikeFrame);
+		assertEquals(20, strikeFrame.calcScore());
+
+		nextStrikeFrame = new SpareFrame(mockFrame, 2);
+		strikeFrame = new StrikeFrame(nextStrikeFrame);
+		assertEquals(20, strikeFrame.calcScore());
+	}
+
+	@Test
+	public void testCalcWithNextStrikeFrame() {
+		Frame nextNextSimpleFrame = new SimpleFrame(mockFrame, 2, 7);
+		Frame nextStrikeFrame = new StrikeFrame(nextNextSimpleFrame);
+		Frame strikeFrame = new StrikeFrame(nextStrikeFrame);
+		assertEquals(22, strikeFrame.calcScore());
+
+		nextNextSimpleFrame = new StrikeFrame(mockFrame);
+		nextStrikeFrame = new StrikeFrame(nextNextSimpleFrame);
+		strikeFrame = new StrikeFrame(nextStrikeFrame);
+		assertEquals(30, strikeFrame.calcScore());
+	}
+
 }

@@ -1,7 +1,8 @@
 package com.jobsity.bowling.frame;
 
-import com.jobsity.bowling.exception.FrameCreationException;
 import static org.junit.Assert.*;
+
+import com.jobsity.bowling.exception.FrameCreationException;
 import org.junit.Test;
 import org.junit.internal.runners.JUnit4ClassRunner;
 import org.junit.runner.RunWith;
@@ -35,4 +36,12 @@ public class SimpleFrameTest {
 	public void testValidFrame() {
 		new SimpleFrame(mockFrame, 5, 4);
 	}
+	
+	@Test(expected = Test.None.class)
+	public void testCalcScore() {
+		assertEquals(0, new SimpleFrame(mockFrame, 0, 0).calcScore());
+		assertEquals(9, new SimpleFrame(mockFrame, 2, 7).calcScore());
+		assertEquals(8, new SimpleFrame(mockFrame, 5, 3).calcScore());
+	}
+	
 }

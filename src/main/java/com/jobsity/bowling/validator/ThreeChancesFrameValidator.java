@@ -10,7 +10,7 @@ public class ThreeChancesFrameValidator extends DefaultChanceValidator {
 
 	@Override
 	public boolean isValid(Frame frame, int... chances) {
-		if (frame == null || chances == null || chances.length != 3) {
+		if (chances == null || chances.length != 3) {
 			return false;
 		}
 		

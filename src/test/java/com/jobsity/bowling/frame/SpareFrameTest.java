@@ -1,9 +1,11 @@
 package com.jobsity.bowling.frame;
 
+import com.jobsity.bowling.exception.FrameCreationException;
 import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.internal.runners.JUnit4ClassRunner;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 
 /**
  *
@@ -12,38 +14,33 @@ import org.junit.runner.RunWith;
 @RunWith(JUnit4ClassRunner.class)
 public class SpareFrameTest {
 
-//	@Test
-//	public void testCalcWithoutNextFrame() {
-//		Frame spareFrame = new SpareFrame(1);
-//		assertEquals(Frame.MAX_SCORE, spareFrame.calcScore());
-//	}
-//
-//	@Test
-//	public void testCalcWithNextSimpleFrame() {
-//		Frame spareFrame = new SpareFrame(8);
-//		spareFrame.setNextFrame(new SimpleFrame(4, 5));
-//		assertEquals(14, spareFrame.calcScore());
-//
-//		spareFrame = new SpareFrame(8);
-//		spareFrame.setNextFrame(new FinalFrame(9, 1, Frame.MAX_SCORE));
-//		assertEquals(19, spareFrame.calcScore());
-//
-//		spareFrame = new SpareFrame(9);
-//		spareFrame.setNextFrame(new FinalFrame(Frame.MAX_SCORE, 5, 2));
-//		assertEquals(20, spareFrame.calcScore());
-//	}
-//
-//	@Test
-//	public void testCalcWithNextSpareFrame() {
-//		Frame spareFrame = new SpareFrame(4);
-//		spareFrame.setNextFrame(new SpareFrame(7));
-//		assertEquals(17, spareFrame.calcScore());
-//	}
-//
-//	@Test
-//	public void testCalcWithNextStrikeFrame() {
-//		Frame spareFrame = new SpareFrame(5);
-//		spareFrame.setNextFrame(new StrikeFrame());
-//		assertEquals(20, spareFrame.calcScore());
-//	}
+	private Frame mockFrame = Mockito.mock(Frame.class);
+
+	@Test(expected = FrameCreationException.class)
+	public void expectFirstChanceInvalid() {
+		new SpareFrame(mockFrame, 11);
+	}
+
+	@Test(expected = Test.None.class)
+	public void testValidFrame() {
+		new SpareFrame(mockFrame, 5);
+	}
+	
+	@Test
+	public void testCalcWithNextSpareFrame() {
+		Frame nextSpareFrame = new SpareFrame(mockFrame, 4);
+		Frame spareFrame = new SpareFrame(nextSpareFrame, 8);
+		assertEquals(14, spareFrame.calcScore());
+
+		nextSpareFrame = new SpareFrame(mockFrame, 9);
+		spareFrame = new SpareFrame(nextSpareFrame, 8);
+		assertEquals(19, spareFrame.calcScore());
+	}
+
+	@Test
+	public void testCalcWithNextStrikeFrame() {
+		Frame nextStrikeFrame = new StrikeFrame(mockFrame);
+		Frame spareFrame = new SpareFrame(nextStrikeFrame, 5);
+		assertEquals(20, spareFrame.calcScore());
+	}
 }

@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 @RunWith(JUnit4ClassRunner.class)
 public class FinalFrameTest {
 	
-	// FinalFrame extends SingleFrame, hence the tests run for SingleFrame
+	// FinalFrame extends SingleFrame, hence the tests run for SimpleFrame
 	// are also valid for FinalFrame
 	
 	@Test(expected = FrameCreationException.class)
