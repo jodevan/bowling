@@ -1,4 +1,4 @@
-package com.jobsity.bowling.validator;
+package com.jobsity.bowling.validator.impl;
 
 import com.jobsity.bowling.frame.Frame;
 
@@ -6,10 +6,10 @@ import com.jobsity.bowling.frame.Frame;
  *
  * @author jodevan
  */
-public class ThreeChancesFrameValidator extends DefaultChanceValidator {
+public class ThreeChancesFrameValidator extends DefaultFrameValidator {
 
 	@Override
-	public boolean isValid(Frame frame, int... chances) {
+	public boolean isValid(int[] chances) {
 		if (chances == null || chances.length != 3) {
 			return false;
 		}

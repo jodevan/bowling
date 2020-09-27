@@ -18,29 +18,33 @@ public class SpareFrameTest {
 
 	@Test(expected = FrameCreationException.class)
 	public void expectFirstChanceInvalid() {
-		new SpareFrame(mockFrame, 11);
-	}
-
-	@Test(expected = Test.None.class)
-	public void testValidFrame() {
-		new SpareFrame(mockFrame, 5);
+		new SpareFrame(1, mockFrame, 11);
 	}
 	
 	@Test
-	public void testCalcWithNextSpareFrame() {
-		Frame nextSpareFrame = new SpareFrame(mockFrame, 4);
-		Frame spareFrame = new SpareFrame(nextSpareFrame, 8);
-		assertEquals(14, spareFrame.calcScore());
+	public void testCalcWithoutNextFrame() {
+		Frame spareFrame = new SpareFrame(1, null, 8);
+		assertEquals(10, spareFrame.calcScore());
 
-		nextSpareFrame = new SpareFrame(mockFrame, 9);
-		spareFrame = new SpareFrame(nextSpareFrame, 8);
-		assertEquals(19, spareFrame.calcScore());
+		spareFrame = new SpareFrame(1, null, 4);
+		assertEquals(10, spareFrame.calcScore());
 	}
 
 	@Test
+	public void testCalcWithNextSpareFrame() {
+		Frame nextSpareFrame = new SpareFrame(1, mockFrame, 4);
+		Frame spareFrame = new SpareFrame(1, nextSpareFrame, 8);
+		assertEquals(14, spareFrame.calcScore());
+
+		nextSpareFrame = new SpareFrame(1, mockFrame, 9);
+		spareFrame = new SpareFrame(1, nextSpareFrame, 8);
+		assertEquals(19, spareFrame.calcScore());
+	}
+	
+	@Test
 	public void testCalcWithNextStrikeFrame() {
-		Frame nextStrikeFrame = new StrikeFrame(mockFrame);
-		Frame spareFrame = new SpareFrame(nextStrikeFrame, 5);
+		Frame nextStrikeFrame = new StrikeFrame(1, mockFrame);
+		Frame spareFrame = new SpareFrame(1, nextStrikeFrame, 5);
 		assertEquals(20, spareFrame.calcScore());
 	}
 }

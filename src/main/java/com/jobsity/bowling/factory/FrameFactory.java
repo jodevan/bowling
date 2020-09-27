@@ -12,35 +12,32 @@ import com.jobsity.bowling.frame.StrikeFrame;
  * @author jodevan
  */
 public class FrameFactory {
-	
-	public static Frame newInstance(Frame nextFrame,  int... externalChances) {
+
+	public static Frame newInstance(int frameNumber, Frame nextFrame,
+			int... externalChances) {
 
 		int[] chances = externalChances != null ? externalChances : new int[]{};
 
-		if (nextFrame == null) {
-			switch (chances.length) {
-				case 2:
-					return new FinalFrame(chances[0], chances[1]);
-				case 3:
-					return new FinalFrame(chances[0], chances[1], chances[2]);
-			}
-		} else {
-			switch (chances.length) {
-				case 0:
-					return new StrikeFrame(nextFrame);
-				case 1:
-					if (chances[0] == Frame.MAX_SCORE) {
-						return new StrikeFrame(nextFrame);
-					}
-					break;
-				case 2:
-					if (chances[0] + chances[1] == Frame.MAX_SCORE) {
-						return new SpareFrame(nextFrame, chances[0]);
-					} else {
-						return new SimpleFrame(
-								nextFrame, chances[0], chances[1]);
-					}
-			}
+		switch (chances.length) {
+			case 0:
+				return new StrikeFrame(frameNumber, nextFrame);
+			case 1:
+				if (chances[0] == Frame.MAX_SCORE) {
+					return new StrikeFrame(frameNumber, nextFrame);
+				}
+				break;
+			case 2:
+				if (frameNumber == Frame.MAX_FRAMES) {
+					return new FinalFrame(frameNumber, chances[0], chances[1]);
+				} else if (chances[0] + chances[1] == Frame.MAX_SCORE) {
+					return new SpareFrame(frameNumber, nextFrame, chances[0]);
+				} else {
+					return new SimpleFrame(
+							frameNumber, nextFrame, chances[0], chances[1]);
+				}
+			case 3:
+				return new FinalFrame(
+						frameNumber, chances[0], chances[1], chances[2]);
 		}
 		throw new FrameCreationException("Invalid parameters");
 	}

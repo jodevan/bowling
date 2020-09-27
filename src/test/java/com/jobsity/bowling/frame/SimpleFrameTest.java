@@ -19,29 +19,29 @@ public class SimpleFrameTest {
 	
 	@Test(expected = FrameCreationException.class)
 	public void expectFirstChanceInvalid() {
-		new SimpleFrame(mockFrame, 11, 5);
+		new SimpleFrame(1, mockFrame, 11, 5);
 	}
 
 	@Test(expected = FrameCreationException.class)
 	public void expectSecondChanceInvalid() {
-		new SimpleFrame(mockFrame, 0, -10);
+		new SimpleFrame(1, mockFrame, 0, -10);
 	}
 
 	@Test(expected = FrameCreationException.class)
 	public void expectSumChancesValuesInvalid() {
-		new SimpleFrame(mockFrame, 5, 6);
+		new SimpleFrame(1, mockFrame, 5, 6);
 	}
 
 	@Test(expected = Test.None.class)
 	public void testValidFrame() {
-		new SimpleFrame(mockFrame, 5, 4);
+		new SimpleFrame(1, mockFrame, 5, 4);
 	}
 	
 	@Test(expected = Test.None.class)
 	public void testCalcScore() {
-		assertEquals(0, new SimpleFrame(mockFrame, 0, 0).calcScore());
-		assertEquals(9, new SimpleFrame(mockFrame, 2, 7).calcScore());
-		assertEquals(8, new SimpleFrame(mockFrame, 5, 3).calcScore());
+		assertEquals(0, new SimpleFrame(1, mockFrame, 0, 0).calcScore());
+		assertEquals(9, new SimpleFrame(1, mockFrame, 2, 7).calcScore());
+		assertEquals(8, new SimpleFrame(1, mockFrame, 5, 3).calcScore());
 	}
 	
 }

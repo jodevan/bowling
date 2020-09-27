@@ -1,4 +1,4 @@
-package com.jobsity.bowling.validator;
+package com.jobsity.bowling.validator.impl;
 
 import com.jobsity.bowling.frame.Frame;
 
@@ -6,10 +6,10 @@ import com.jobsity.bowling.frame.Frame;
  *
  * @author jodevan
  */
-public class TwoChancesFrameValidator extends DefaultChanceValidator {
+public class SimpleFrameValidator extends DefaultFrameValidator {
 
 	@Override
-	public boolean isValid(Frame frame, int... chances) {
+	public boolean isValid(int[] chances) {
 		// A simple frame should have 2 chances
 		if (chances == null || chances.length != 2) {
 			return false;
@@ -27,5 +27,4 @@ public class TwoChancesFrameValidator extends DefaultChanceValidator {
 		
 		return true;
 	}
-	
 }

@@ -19,8 +19,11 @@ public class SpareFrameCalcBehavior implements ScoreCalcBehavior {
 		// safely assume it will always have at least 1 chance in
 		// its array
 		
+		int nextChance = frame.getNextFrame()  != null ? 
+				frame.getNextFrame().getChances()[0] : 0;
+		
 		// A spare frame always counts 10;
-		return Frame.MAX_SCORE + frame.getNextFrame().getChances()[0];
+		return Frame.MAX_SCORE + nextChance;
 	}
 	
 }

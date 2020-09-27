@@ -15,6 +15,16 @@ public abstract class Frame {
 	 * Constant to represent the max allowed score for a chance
 	 */
 	public static final int MAX_SCORE = 10;
+	
+	/**
+	 * Constant to represent the max number of frames
+	 */
+	public static final int MAX_FRAMES = 10;
+	
+	/**
+	 * Frame number
+	 */
+	private final int frameNumber;
 
 	/**
 	 * The number of chances of a frame
@@ -24,10 +34,9 @@ public abstract class Frame {
 	/**
 	 * The frame that follows the current frame. They become specially important
 	 * when calculating the current frame score for spares and strikes.
-	 * It's also used to chain the list of frames of a player.
-	 * Only the FinalFrame is allowed to do not have the next frame.
+	 * It's also used to chain the list of frames of a player
 	 */
-	protected final Frame nextFrame;
+	protected Frame nextFrame;
 	
 	/**
 	 * Strategy use to calculate the current frame score
@@ -45,6 +54,7 @@ public abstract class Frame {
 
 	/**
 	 * Instantiates a frame
+	 * @param frameNumber The number of the current frame
 	 * @param chances The number of chances of each frame
 	 * @param nextFrame Next frame
 	 * @param calcBehavior Strategy use to calculate the current frame score
@@ -52,8 +62,10 @@ public abstract class Frame {
 	 * frames with without chances or invalid chance values. This validator
 	 * is a represents a strategy to validade each frame according to its type.
 	 */
-	protected Frame(int[] chances, Frame nextFrame, 
+	protected Frame(int frameNumber, int[] chances, Frame nextFrame, 
 			ScoreCalcBehavior calcBehavior, Validator validator) {
+		
+		this.frameNumber = frameNumber;
 		this.nextFrame = nextFrame;
 		this.chances = chances;
 		this.scoreCalcBehavior = calcBehavior;
@@ -61,7 +73,7 @@ public abstract class Frame {
 		if (validator == null) {
 			throw new FrameCreationException("Validator can't be null");
 		}
-		if (!validator.isValid(nextFrame, chances)) {
+		if (!validator.isValid(frameNumber, chances)) {
 			throw new FrameCreationException("Invalid parameters");
 		}
 	}
@@ -76,11 +88,19 @@ public abstract class Frame {
 				scoreCalcBehavior.calculate(this) : 0;
 	}
 	
+	public int getFrameNumber() {
+		return frameNumber;
+	}
+	
 	public int[] getChances() {
 		return chances;
 	}
-
+	
 	public Frame getNextFrame() {
 		return nextFrame;
+	}
+
+	public void setNextFrame(Frame nextFrame) {
+		this.nextFrame = nextFrame;
 	}
 }

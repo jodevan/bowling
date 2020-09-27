@@ -29,41 +29,43 @@ public class FactoryTest {
 
 	@Test(expected = Test.None.class)
 	public void testExpectSimpleFrame() {
-		Frame frame = FrameFactory.newInstance(mockFrame, new int[]{2, 4});
+		Frame frame = FrameFactory.newInstance(1, mockFrame, new int[]{2, 4});
 		assertTrue(frame instanceof SimpleFrame);
 
-		frame = FrameFactory.newInstance(mockFrame, new int[]{0, 0});
+		frame = FrameFactory.newInstance(4, mockFrame, new int[]{0, 0});
 		assertTrue(frame instanceof SimpleFrame);
 	}
 
 	@Test(expected = Test.None.class)
 	public void testExpectSpareFrame() {
-		Frame frame = FrameFactory.newInstance(mockFrame, new int[]{4, 6});
+		Frame frame = FrameFactory.newInstance(2, mockFrame, new int[]{4, 6});
 		assertTrue(frame instanceof SpareFrame);
 
 		frame = FrameFactory.newInstance(
-				mockFrame, new int[]{0, Frame.MAX_SCORE});
+				7, mockFrame, new int[]{0, Frame.MAX_SCORE});
 		assertTrue(frame instanceof SpareFrame);
 	}
 
 	@Test(expected = Test.None.class)
 	public void testExpectStrikeFrame() {
 		Frame frame = FrameFactory.newInstance(
-				mockFrame, new int[]{Frame.MAX_SCORE});
+				6, mockFrame, new int[]{Frame.MAX_SCORE});
 		assertTrue(frame instanceof StrikeFrame);
 	}
 
 	@Test(expected = Test.None.class)
 	public void testExpectFinalFrame() {
-		Frame frame = FrameFactory.newInstance(null, new int[]{0, 4});
+		Frame frame = FrameFactory.newInstance(
+				Frame.MAX_FRAMES, null, new int[]{0, 4});
 		assertTrue(frame instanceof FinalFrame);
 
 		frame = FrameFactory.newInstance(
-				null, new int[]{Frame.MAX_SCORE, 0, 0});
+				Frame.MAX_FRAMES, null, new int[]{Frame.MAX_SCORE, 0, 0});
 		assertTrue(frame instanceof FinalFrame);
 
 		frame = FrameFactory.newInstance(
-				null, new int[]{Frame.MAX_SCORE, Frame.MAX_SCORE, 9});
+				Frame.MAX_FRAMES, null, 
+				new int[]{Frame.MAX_SCORE, Frame.MAX_SCORE, 9});
 		assertTrue(frame instanceof FinalFrame);
 
 	}

@@ -18,45 +18,45 @@ public class FinalFrameTest {
 	
 	@Test(expected = FrameCreationException.class)
 	public void expectFirstChanceInvalid() {
-		new FinalFrame(11, 5, 4);
+		new FinalFrame(1, 11, 5, 4);
 	}
 
 	@Test(expected = FrameCreationException.class)
 	public void expectSecondChanceInvalid() {
-		new FinalFrame(10, -1, 4);
+		new FinalFrame(1, 10, -1, 4);
 	}
 
 	@Test(expected = FrameCreationException.class)
 	public void expectThirdChanceInvalid() {
-		new FinalFrame(10, 0, 14);
+		new FinalFrame(1, 10, 0, 14);
 	}
 
 	@Test(expected = FrameCreationException.class)
 	public void expectThirdChanceNotAcceptable() {
-		new FinalFrame(4, 5, 6);
+		new FinalFrame(1, 4, 5, 6);
 	}
 
 	@Test(expected = Test.None.class)
 	public void expectThirdChanceAcceptable() {
 		// A spare
-		new FinalFrame(2, 8, 6);
+		new FinalFrame(1, 2, 8, 6);
 
 		// A strike
-		new FinalFrame(Frame.MAX_SCORE, 8, 6);
+		new FinalFrame(1, Frame.MAX_SCORE, 8, 6);
 
 		// 2 strikes
-		new FinalFrame(Frame.MAX_SCORE, Frame.MAX_SCORE, 9);
+		new FinalFrame(1, Frame.MAX_SCORE, Frame.MAX_SCORE, 9);
 	}
 
 	@Test
 	public void testCalc() {
-		Frame finalFrame = new FinalFrame(1, 5);
+		Frame finalFrame = new FinalFrame(1, 1, 5);
 		assertEquals(6, finalFrame.calcScore());
 
-		finalFrame = new FinalFrame(0, 8);
+		finalFrame = new FinalFrame(1, 0, 8);
 		assertEquals(8, finalFrame.calcScore());
 
-		finalFrame = new FinalFrame(Frame.MAX_SCORE, 9, 4);
+		finalFrame = new FinalFrame(1, Frame.MAX_SCORE, 9, 4);
 		assertEquals(23, finalFrame.calcScore());
 	}
 }
