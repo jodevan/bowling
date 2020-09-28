@@ -1,5 +1,6 @@
 package com.jobsity.bowling.game.state;
 
+import com.jobsity.bowling.game.state.exception.InvalidGameStateException;
 import com.jobsity.bowling.game.parser.PlayRecord;
 
 /**
@@ -8,5 +9,5 @@ import com.jobsity.bowling.game.parser.PlayRecord;
  */
 public interface BowlingState {
 	
-	public void play(PlayRecord playRecord);
+	public void play(PlayRecord playRecord) throws InvalidGameStateException;
 }

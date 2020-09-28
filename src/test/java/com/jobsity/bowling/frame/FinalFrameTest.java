@@ -42,7 +42,7 @@ public class FinalFrameTest {
 		new FinalFrame(1, 2, 8, 6);
 
 		// A strike
-		new FinalFrame(1, Frame.MAX_SCORE, 8, 6);
+		new FinalFrame(1, Frame.MAX_SCORE, 8, 2);
 
 		// 2 strikes
 		new FinalFrame(1, Frame.MAX_SCORE, Frame.MAX_SCORE, 9);
@@ -56,16 +56,16 @@ public class FinalFrameTest {
 		finalFrame = new FinalFrame(1, 0, 8);
 		assertEquals(8, finalFrame.calcScore());
 
-		finalFrame = new FinalFrame(1, Frame.MAX_SCORE, 9, 4);
-		assertEquals(23, finalFrame.calcScore());
+		finalFrame = new FinalFrame(1, Frame.MAX_SCORE, 9, 1);
+		assertEquals(20, finalFrame.calcScore());
 	}
 	
 	@Test
 	public void testPrint() {
 		assertEquals("1\t5", new FinalFrame(
 				1, 1, 5).printChances());
-		assertEquals("X\t9\t4", new FinalFrame(
-				1, Frame.MAX_SCORE, 9, 4).printChances());
+		assertEquals("X\t9\t1", new FinalFrame(
+				1, Frame.MAX_SCORE, 9, 1).printChances());
 		assertEquals("X\tX\tX", new FinalFrame(
 				1, Frame.MAX_SCORE, Frame.MAX_SCORE, Frame.MAX_SCORE)
 				.printChances());

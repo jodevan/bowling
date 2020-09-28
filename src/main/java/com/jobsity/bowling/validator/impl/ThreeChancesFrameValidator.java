@@ -19,12 +19,24 @@ public class ThreeChancesFrameValidator extends DefaultFrameValidator {
 				|| !isChanceValid(chances[2])) {
 			return false;
 		}
+		
+//		if (chances[0] == Frame.MAX_SCORE) {
+//			return chances[1] + chances[2] <= Frame.MAX_SCORE;
+//		} else {
+//			return chances[0] + chances[1] == Frame.MAX_SCORE
+//					&& chances[1] + chances[2] <= Frame.MAX_SCORE;
+//		}
 
-		if (chances[0] + chances[1] < Frame.MAX_SCORE) {
-			return false;
+		// First chance was a strike
+		if (chances[0] == Frame.MAX_SCORE) {
+			// Second chance was a strike too
+			if (chances[1] == Frame.MAX_SCORE) {
+				return true;
+			} else {
+				return chances[1] + chances[2] <= Frame.MAX_SCORE;
+			}
+		} else {
+			return chances[0] + chances[1] == Frame.MAX_SCORE;
 		}
-
-		return true;
 	}
-	
 }

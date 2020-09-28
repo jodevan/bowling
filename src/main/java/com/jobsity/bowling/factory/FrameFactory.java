@@ -13,6 +13,10 @@ import com.jobsity.bowling.frame.StrikeFrame;
  */
 public class FrameFactory {
 
+	public static Frame newInstance(int frameNumber, int... externalChances) {
+		return newInstance(frameNumber, null, externalChances);
+	}
+	
 	public static Frame newInstance(int frameNumber, Frame nextFrame,
 			int... externalChances) {
 

@@ -1,6 +1,7 @@
 package com.jobsity.bowling.game.state.impl;
 
 import com.jobsity.bowling.factory.FrameFactory;
+import com.jobsity.bowling.frame.Frame;
 import com.jobsity.bowling.game.BowlingGame;
 import com.jobsity.bowling.game.PlayTracker;
 import com.jobsity.bowling.game.parser.PlayRecord;
@@ -12,15 +13,15 @@ import java.util.Map;
  *
  * @author jodevan
  */
-public class InitialFrameSecondChanceState extends DefaultChanceState {
+public class RegularFrameFirstChanceState extends DefaultChanceState {
 
-	public InitialFrameSecondChanceState(BowlingGame bowlingGame) {
+	public RegularFrameFirstChanceState(BowlingGame bowlingGame) {
 		super(bowlingGame);
 	}
 
 	@Override
 	public void play(PlayRecord playRecord) throws InvalidGameStateException {
-
+		
 		if (!validateTurnPlayer(playRecord)) {
 			throw new InvalidGameStateException(bowlingGame
 					.getTurnPlayer().getName(), playRecord.getPlayer());
@@ -32,10 +33,18 @@ public class InitialFrameSecondChanceState extends DefaultChanceState {
 		int chance = playRecord.getChance();
 		
 		Player player = bowlingGame.getTurnPlayer();
-		player.addFrame(FrameFactory.newInstance(
-				bowlingGame.getFrameNumber(), 
-				tracker.getChances().get(0), chance));
-		tracker.resetChances();
-		bowlingGame.setState(bowlingGame.getInitialFrameFirstChanceState());
+
+		// If it's a strike, we can't create this frame right away
+		if (chance == Frame.MAX_SCORE) {
+			player.addFrame(
+					FrameFactory.newInstance(
+							bowlingGame.getFrameNumber(), 
+							new int[]{Frame.MAX_SCORE}));
+			bowlingGame.endTurn();
+		} else {
+			tracker.addChance(chance);
+			bowlingGame.setState(
+					bowlingGame.getRegularFrameSecondChanceState());
+		}
 	}
 }

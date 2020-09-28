@@ -50,14 +50,14 @@ public class PlayRecordParserTest {
 		
 		playRecord = PlayRecordParser.parsePlayRecord(new String("John\t10"));
 		assertEquals("John", playRecord.getPlayer());
-		assertEquals(10, playRecord.getScore());
+		assertEquals(10, playRecord.getChance());
 
 		playRecord = PlayRecordParser.parsePlayRecord(new String("Mary\t0"));
 		assertEquals("Mary", playRecord.getPlayer());
-		assertEquals(0, playRecord.getScore());
+		assertEquals(0, playRecord.getChance());
 
 		playRecord = PlayRecordParser.parsePlayRecord(new String("Paul\tF"));
 		assertEquals("Paul", playRecord.getPlayer());
-		assertEquals(0, playRecord.getScore());
+		assertEquals(0, playRecord.getChance());
 	}
 }

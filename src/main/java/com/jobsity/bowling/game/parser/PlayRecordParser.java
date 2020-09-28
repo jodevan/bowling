@@ -30,12 +30,11 @@ public class PlayRecordParser {
 			return PlayRecord
 					.builder()
 					.player(playerName)
-					.score(FAULT_STRING.equals(score) ? 
+					.chance(FAULT_STRING.equals(score) ? 
 							0 : Integer.parseInt(score))
 					.build();
 		} else {
-			throw new PlayRecordParseException(
-					"Invalid play record: "+ line);
+			throw new PlayRecordParseException("Invalid play record: "+ line);
 		}
 	}
 }

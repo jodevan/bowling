@@ -20,5 +20,5 @@ import lombok.ToString;
 public class PlayRecord {
 	
 	private String player;
-	private int score;
+	private int chance;
 }
