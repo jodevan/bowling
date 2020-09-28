@@ -47,4 +47,11 @@ public class SpareFrameTest {
 		Frame spareFrame = new SpareFrame(1, nextStrikeFrame, 5);
 		assertEquals(20, spareFrame.calcScore());
 	}
+	
+	@Test
+	public void testPrint() {
+		assertEquals("0\t/", new SpareFrame(1, mockFrame, 0).printChances());
+		assertEquals("2\t/", new SpareFrame(1, mockFrame, 2).printChances());
+	}
+	
 }

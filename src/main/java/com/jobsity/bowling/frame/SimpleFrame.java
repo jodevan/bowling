@@ -1,5 +1,6 @@
 package com.jobsity.bowling.frame;
 
+import com.jobsity.bowling.frame.print.impl.PrintSimpleFrameBehavior;
 import com.jobsity.bowling.score.impl.SingleFrameCalcBehavior;
 import com.jobsity.bowling.validator.impl.SimpleFrameValidator;
 
@@ -16,6 +17,7 @@ public class SimpleFrame extends Frame {
 				new int[]{chance1, chance2}, 
 				nextFrame,
 				new SingleFrameCalcBehavior(),
+				new PrintSimpleFrameBehavior(),
 				new SimpleFrameValidator());
 	}
 }

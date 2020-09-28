@@ -3,6 +3,7 @@ package com.jobsity.bowling.frame;
 import com.jobsity.bowling.exception.FrameCreationException;
 import com.jobsity.bowling.validator.Validator;
 import com.jobsity.bowling.score.ScoreCalcBehavior;
+import com.jobsity.bowling.frame.print.PrintChancesBehavior;
 
 /**
  * Represents an abstract frame. Each type of frame will provide its
@@ -42,6 +43,11 @@ public abstract class Frame {
 	 * Strategy use to calculate the current frame score
 	 */
 	private final ScoreCalcBehavior scoreCalcBehavior;
+
+	/**
+	 * Strategy use to print the current frame chances
+	 */
+	private final PrintChancesBehavior printChancesBehavior;
 	
 	/*
 	 * Note: This class use to instances of the strategy pattern: 
@@ -58,17 +64,24 @@ public abstract class Frame {
 	 * @param chances The number of chances of each frame
 	 * @param nextFrame Next frame
 	 * @param calcBehavior Strategy use to calculate the current frame score
+	 * @param printBehavior Strategy use to print the current frame chances
 	 * @param validator It's not possible to instatiate invalid frames, i.e.,
 	 * frames with without chances or invalid chance values. This validator
 	 * is a represents a strategy to validade each frame according to its type.
 	 */
-	protected Frame(int frameNumber, int[] chances, Frame nextFrame, 
-			ScoreCalcBehavior calcBehavior, Validator validator) {
+	protected Frame(
+			int frameNumber, 
+			int[] chances, 
+			Frame nextFrame, 
+			ScoreCalcBehavior calcBehavior, 
+			PrintChancesBehavior printBehavior, 
+			Validator validator) {
 		
 		this.frameNumber = frameNumber;
 		this.nextFrame = nextFrame;
 		this.chances = chances;
 		this.scoreCalcBehavior = calcBehavior;
+		this.printChancesBehavior = printBehavior;
 		
 		if (validator == null) {
 			throw new FrameCreationException("Validator can't be null");
@@ -86,6 +99,11 @@ public abstract class Frame {
 	public int calcScore() {
 		return scoreCalcBehavior != null ? 
 				scoreCalcBehavior.calculate(this) : 0;
+	}
+	
+	public String printChances() {
+		return printChancesBehavior != null ? 
+				printChancesBehavior.print(this) : null;
 	}
 	
 	public int getFrameNumber() {

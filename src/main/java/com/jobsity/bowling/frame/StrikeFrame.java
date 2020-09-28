@@ -1,5 +1,6 @@
 package com.jobsity.bowling.frame;
 
+import com.jobsity.bowling.frame.print.impl.PrintStrikeFrameBehavior;
 import com.jobsity.bowling.score.impl.StrikeFrameCalcBehavior;
 import com.jobsity.bowling.validator.impl.StrikeFrameValidator;
 
@@ -15,6 +16,7 @@ public class StrikeFrame extends Frame {
 				new int[]{Frame.MAX_SCORE}, 
 				nextFrame, 
 				new StrikeFrameCalcBehavior(),
+				new PrintStrikeFrameBehavior(),
 				new StrikeFrameValidator());
 	}
 }

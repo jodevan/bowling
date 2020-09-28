@@ -59,4 +59,16 @@ public class FinalFrameTest {
 		finalFrame = new FinalFrame(1, Frame.MAX_SCORE, 9, 4);
 		assertEquals(23, finalFrame.calcScore());
 	}
+	
+	@Test
+	public void testPrint() {
+		assertEquals("1\t5", new FinalFrame(
+				1, 1, 5).printChances());
+		assertEquals("X\t9\t4", new FinalFrame(
+				1, Frame.MAX_SCORE, 9, 4).printChances());
+		assertEquals("X\tX\tX", new FinalFrame(
+				1, Frame.MAX_SCORE, Frame.MAX_SCORE, Frame.MAX_SCORE)
+				.printChances());
+	}
+	
 }

@@ -37,11 +37,18 @@ public class SimpleFrameTest {
 		new SimpleFrame(1, mockFrame, 5, 4);
 	}
 	
-	@Test(expected = Test.None.class)
+	@Test
 	public void testCalcScore() {
 		assertEquals(0, new SimpleFrame(1, mockFrame, 0, 0).calcScore());
 		assertEquals(9, new SimpleFrame(1, mockFrame, 2, 7).calcScore());
 		assertEquals(8, new SimpleFrame(1, mockFrame, 5, 3).calcScore());
 	}
 	
+	@Test
+	public void testPrint() {
+		assertEquals("0\t0", 
+				new SimpleFrame(1, mockFrame, 0, 0).printChances());
+		assertEquals("2\t7", 
+				new SimpleFrame(1, mockFrame, 2, 7).printChances());
+	}
 }

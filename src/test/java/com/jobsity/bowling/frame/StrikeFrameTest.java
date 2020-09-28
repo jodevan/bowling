@@ -68,5 +68,9 @@ public class StrikeFrameTest {
 		strikeFrame = new StrikeFrame(1, nextStrikeFrame);
 		assertEquals(30, strikeFrame.calcScore());
 	}
-
+	
+	@Test
+	public void testPrint() {
+		assertEquals("\t\tX", new StrikeFrame(1, mockFrame).printChances());
+	}
 }
