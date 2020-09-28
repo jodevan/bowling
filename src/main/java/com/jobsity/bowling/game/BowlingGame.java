@@ -100,10 +100,10 @@ public class BowlingGame {
 	}
 	
 	public void printGame() {
-		System.out.printf("%-10s|", "Frame");
+		System.out.print("Frame\t\t");
 
 		IntStream.range(1, MAX_FRAMES + 1).forEach(
-				i -> System.out.printf(" %-3d |", i));
+				i -> System.out.printf("%d\t\t", i));
 		System.out.println();
 
 		this.getPlayers().forEach(player -> {
@@ -122,16 +122,16 @@ public class BowlingGame {
 			Frame f = player.get().getFrame();
 			int score = 0;
 			while (f != null) {
-				pinfalls.add(String.format("%s | ", f.printChances()));
+				pinfalls.add(String.format("%s\t", f.printChances()));
 				score += f.calcScore();
-				scores.add(String.format("%-3s | ", score));
+				scores.add(String.format("%d\t\t", score));
 				f = f.getNextFrame();
 			}
 			System.out.println(player.get().getName());
-			System.out.print("Pinfalls  | ");
+			System.out.print("Pinfalls\t");
 			pinfalls.stream().forEach(System.out::print);
 			System.out.println();
-			System.out.print("Score     | ");
+			System.out.print("Score\t\t");
 			scores.stream().forEach(System.out::print);
 			System.out.println();
 		}

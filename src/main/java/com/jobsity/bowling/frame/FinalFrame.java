@@ -1,6 +1,5 @@
 package com.jobsity.bowling.frame;
 
-import com.jobsity.bowling.frame.print.impl.PrintSimpleFrameBehavior;
 import com.jobsity.bowling.frame.print.impl.PrintThreeChancesFrameBehavior;
 import com.jobsity.bowling.score.impl.SingleFrameCalcBehavior;
 import com.jobsity.bowling.validator.impl.SimpleFrameValidator;

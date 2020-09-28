@@ -8,7 +8,7 @@ import com.jobsity.bowling.frame.Frame;
  */
 public interface PrintChancesBehavior {
 	
-	public final String PRINT_SEPARATOR = " ";
+	public final String PRINT_SEPARATOR = "\t";
 	
 	public String print(Frame frame);
 	
