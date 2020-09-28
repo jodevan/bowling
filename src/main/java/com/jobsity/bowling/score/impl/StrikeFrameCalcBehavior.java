@@ -1,6 +1,7 @@
 package com.jobsity.bowling.score.impl;
 
 import com.jobsity.bowling.frame.Frame;
+import com.jobsity.bowling.game.BowlingGame;
 import com.jobsity.bowling.score.ScoreCalcBehavior;
 
 /**
@@ -39,6 +40,6 @@ public class StrikeFrameCalcBehavior implements ScoreCalcBehavior {
 		}
 
 		// A strike always counts 10;
-		return Frame.MAX_SCORE + nextChance1 + nextChance2;
+		return BowlingGame.MAX_SCORE + nextChance1 + nextChance2;
 	}
 }

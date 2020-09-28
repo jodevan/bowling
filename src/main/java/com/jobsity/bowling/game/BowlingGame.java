@@ -30,6 +30,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BowlingGame {
+
+	/**
+	 * Constant to represent the max number of frames
+	 */
+	public static final int MAX_FRAMES = 10;
+	/**
+	 * Constant to represent the max allowed score for a chance
+	 */
+	public static final int MAX_SCORE = 10;
 	
 	private Map<String, PlayTracker> playTrackerMap = new LinkedHashMap<>();
 	private List<Player> players = new ArrayList<>();
@@ -93,7 +102,7 @@ public class BowlingGame {
 	public void printGame() {
 		System.out.printf("%-10s|", "Frame");
 
-		IntStream.range(1, Frame.MAX_FRAMES + 1).forEach(
+		IntStream.range(1, MAX_FRAMES + 1).forEach(
 				i -> System.out.printf(" %-3d |", i));
 		System.out.println();
 

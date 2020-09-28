@@ -1,7 +1,6 @@
 package com.jobsity.bowling.game.state.impl;
 
 import com.jobsity.bowling.factory.FrameFactory;
-import com.jobsity.bowling.frame.Frame;
 import com.jobsity.bowling.game.BowlingGame;
 import com.jobsity.bowling.game.PlayTracker;
 import com.jobsity.bowling.game.parser.PlayRecord;
@@ -31,7 +30,7 @@ public class FinalFrameSecondChanceState extends DefaultChanceState {
 		
 		tracker.addChance(playRecord.getChance());
 		
-		if (tracker.sumChances() >= Frame.MAX_SCORE) {
+		if (tracker.sumChances() >= BowlingGame.MAX_SCORE) {
 			// The player either scored a strike on his/her first attempt
 			// or scored a spair on his/her second second attempt
 			bowlingGame.setState(bowlingGame.getFinalFrameThirdChanceState());
@@ -42,7 +41,7 @@ public class FinalFrameSecondChanceState extends DefaultChanceState {
 							tracker.getChancesArray()));
 			tracker.resetChances();
 			bowlingGame.endTurn();
-			if (bowlingGame.getFrameNumber() > Frame.MAX_FRAMES) {
+			if (bowlingGame.getFrameNumber() > BowlingGame.MAX_FRAMES) {
 				bowlingGame.setState(bowlingGame.getGameOverState());
 			} else {
 				bowlingGame.setState(

@@ -1,7 +1,7 @@
 package com.jobsity.bowling.validator;
 
 import com.jobsity.bowling.validator.impl.ThreeChancesFrameValidator;
-import com.jobsity.bowling.frame.Frame;
+import com.jobsity.bowling.game.BowlingGame;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -34,9 +34,9 @@ public class ThreeChancesFrameValidatorTest {
 	public void testValid3Chances() {
 		assertTrue(threeChancesFrameValidator.isValid(4, new int[]{5, 5, 8}));
 		assertTrue(threeChancesFrameValidator.isValid(
-				5, new int[]{Frame.MAX_SCORE, 0, 8}));
+				5, new int[]{BowlingGame.MAX_SCORE, 0, 8}));
 		assertTrue(threeChancesFrameValidator.isValid(
-				6, new int[]{Frame.MAX_SCORE, Frame.MAX_SCORE, 9}));
+				6, new int[]{BowlingGame.MAX_SCORE, BowlingGame.MAX_SCORE, 9}));
 	}
 
 	@Test

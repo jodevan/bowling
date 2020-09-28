@@ -12,15 +12,6 @@ import com.jobsity.bowling.frame.print.PrintChancesBehavior;
  */
 public abstract class Frame {
 
-	/**
-	 * Constant to represent the max allowed score for a chance
-	 */
-	public static final int MAX_SCORE = 10;
-	
-	/**
-	 * Constant to represent the max number of frames
-	 */
-	public static final int MAX_FRAMES = 10;
 	
 	/**
 	 * Frame number

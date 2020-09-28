@@ -7,6 +7,7 @@ import com.jobsity.bowling.frame.Frame;
 import com.jobsity.bowling.frame.SimpleFrame;
 import com.jobsity.bowling.frame.SpareFrame;
 import com.jobsity.bowling.frame.StrikeFrame;
+import com.jobsity.bowling.game.BowlingGame;
 import org.junit.Test;
 import org.junit.internal.runners.JUnit4ClassRunner;
 import org.junit.runner.RunWith;
@@ -42,30 +43,31 @@ public class FactoryTest {
 		assertTrue(frame instanceof SpareFrame);
 
 		frame = FrameFactory.newInstance(
-				7, mockFrame, new int[]{0, Frame.MAX_SCORE});
+				7, mockFrame, new int[]{0, BowlingGame.MAX_SCORE});
 		assertTrue(frame instanceof SpareFrame);
 	}
 
 	@Test(expected = Test.None.class)
 	public void testExpectStrikeFrame() {
 		Frame frame = FrameFactory.newInstance(
-				6, mockFrame, new int[]{Frame.MAX_SCORE});
+				6, mockFrame, new int[]{BowlingGame.MAX_SCORE});
 		assertTrue(frame instanceof StrikeFrame);
 	}
 
 	@Test(expected = Test.None.class)
 	public void testExpectFinalFrame() {
 		Frame frame = FrameFactory.newInstance(
-				Frame.MAX_FRAMES, null, new int[]{0, 4});
+				BowlingGame.MAX_FRAMES, null, new int[]{0, 4});
 		assertTrue(frame instanceof FinalFrame);
 
 		frame = FrameFactory.newInstance(
-				Frame.MAX_FRAMES, null, new int[]{Frame.MAX_SCORE, 0, 0});
+				BowlingGame.MAX_FRAMES, null, 
+				new int[]{BowlingGame.MAX_SCORE, 0, 0});
 		assertTrue(frame instanceof FinalFrame);
 
 		frame = FrameFactory.newInstance(
-				Frame.MAX_FRAMES, null, 
-				new int[]{Frame.MAX_SCORE, Frame.MAX_SCORE, 9});
+				BowlingGame.MAX_FRAMES, null, 
+				new int[]{BowlingGame.MAX_SCORE, BowlingGame.MAX_SCORE, 9});
 		assertTrue(frame instanceof FinalFrame);
 
 	}

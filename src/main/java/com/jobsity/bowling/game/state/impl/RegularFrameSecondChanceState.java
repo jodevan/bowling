@@ -1,11 +1,9 @@
 package com.jobsity.bowling.game.state.impl;
 
 import com.jobsity.bowling.factory.FrameFactory;
-import com.jobsity.bowling.frame.Frame;
 import com.jobsity.bowling.game.BowlingGame;
 import com.jobsity.bowling.game.PlayTracker;
 import com.jobsity.bowling.game.parser.PlayRecord;
-import com.jobsity.bowling.game.state.BowlingState;
 import com.jobsity.bowling.game.state.exception.InvalidGameStateException;
 import java.util.Map;
 
@@ -40,13 +38,13 @@ public class RegularFrameSecondChanceState extends DefaultChanceState {
 		tracker.resetChances();
 		bowlingGame.endTurn();
 		
-		if (bowlingGame.getFrameNumber() < Frame.MAX_FRAMES) {
+		if (bowlingGame.getFrameNumber() < BowlingGame.MAX_FRAMES) {
 			bowlingGame.setState(bowlingGame.getRegularFrameFirstChanceState());
-		} else if (bowlingGame.getFrameNumber() == Frame.MAX_FRAMES) {
+		} else if (bowlingGame.getFrameNumber() == BowlingGame.MAX_FRAMES) {
 			bowlingGame.setState(bowlingGame.getFinalFrameFirstChanceState());
 		} else {
 			throw new InvalidGameStateException("No more than "
-					+ Frame.MAX_SCORE + " are allowed");
+					+ BowlingGame.MAX_SCORE + " are allowed");
 		}
 	}
 }

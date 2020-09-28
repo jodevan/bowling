@@ -3,7 +3,7 @@ package com.jobsity.bowling.validator;
 import com.jobsity.bowling.validator.impl.DefaultFrameValidator;
 import static org.junit.Assert.*;
 
-import com.jobsity.bowling.frame.Frame;
+import com.jobsity.bowling.game.BowlingGame;
 import org.junit.Test;
 import org.junit.internal.runners.JUnit4ClassRunner;
 import org.junit.runner.RunWith;
@@ -44,7 +44,8 @@ public class DefaultChanceValidatorTest {
 
 	@Test
 	public void testChanceGreaterThanMaxFrameScore() {
-		assertFalse(defaultFrameValidator.isChanceValid(Frame.MAX_SCORE + 1));
+		assertFalse(defaultFrameValidator
+				.isChanceValid(BowlingGame.MAX_SCORE + 1));
 	}
 
 	@Test

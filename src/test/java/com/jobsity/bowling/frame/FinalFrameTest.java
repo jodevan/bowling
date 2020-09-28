@@ -2,6 +2,7 @@ package com.jobsity.bowling.frame;
 
 import static org.junit.Assert.*;
 import com.jobsity.bowling.exception.FrameCreationException;
+import com.jobsity.bowling.game.BowlingGame;
 import org.junit.Test;
 import org.junit.internal.runners.JUnit4ClassRunner;
 import org.junit.runner.RunWith;
@@ -42,10 +43,10 @@ public class FinalFrameTest {
 		new FinalFrame(1, 2, 8, 6);
 
 		// A strike
-		new FinalFrame(1, Frame.MAX_SCORE, 8, 2);
+		new FinalFrame(1, BowlingGame.MAX_SCORE, 8, 2);
 
 		// 2 strikes
-		new FinalFrame(1, Frame.MAX_SCORE, Frame.MAX_SCORE, 9);
+		new FinalFrame(1, BowlingGame.MAX_SCORE, BowlingGame.MAX_SCORE, 9);
 	}
 
 	@Test
@@ -56,7 +57,7 @@ public class FinalFrameTest {
 		finalFrame = new FinalFrame(1, 0, 8);
 		assertEquals(8, finalFrame.calcScore());
 
-		finalFrame = new FinalFrame(1, Frame.MAX_SCORE, 9, 1);
+		finalFrame = new FinalFrame(1, BowlingGame.MAX_SCORE, 9, 1);
 		assertEquals(20, finalFrame.calcScore());
 	}
 	
@@ -65,9 +66,10 @@ public class FinalFrameTest {
 		assertEquals("1 5  ", new FinalFrame(
 				1, 1, 5).printChances());
 		assertEquals("X 9 1", new FinalFrame(
-				1, Frame.MAX_SCORE, 9, 1).printChances());
+				1, BowlingGame.MAX_SCORE, 9, 1).printChances());
 		assertEquals("X X X", new FinalFrame(
-				1, Frame.MAX_SCORE, Frame.MAX_SCORE, Frame.MAX_SCORE)
+				1, BowlingGame.MAX_SCORE, BowlingGame.MAX_SCORE, 
+				BowlingGame.MAX_SCORE)
 				.printChances());
 	}
 	

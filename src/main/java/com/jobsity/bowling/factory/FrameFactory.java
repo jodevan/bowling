@@ -6,6 +6,7 @@ import com.jobsity.bowling.frame.Frame;
 import com.jobsity.bowling.frame.SimpleFrame;
 import com.jobsity.bowling.frame.SpareFrame;
 import com.jobsity.bowling.frame.StrikeFrame;
+import com.jobsity.bowling.game.BowlingGame;
 
 /**
  *
@@ -26,14 +27,14 @@ public class FrameFactory {
 			case 0:
 				return new StrikeFrame(frameNumber, nextFrame);
 			case 1:
-				if (chances[0] == Frame.MAX_SCORE) {
+				if (chances[0] == BowlingGame.MAX_SCORE) {
 					return new StrikeFrame(frameNumber, nextFrame);
 				}
 				break;
 			case 2:
-				if (frameNumber == Frame.MAX_FRAMES) {
+				if (frameNumber == BowlingGame.MAX_FRAMES) {
 					return new FinalFrame(frameNumber, chances[0], chances[1]);
-				} else if (chances[0] + chances[1] == Frame.MAX_SCORE) {
+				} else if (chances[0] + chances[1] == BowlingGame.MAX_SCORE) {
 					return new SpareFrame(frameNumber, nextFrame, chances[0]);
 				} else {
 					return new SimpleFrame(

@@ -1,7 +1,6 @@
 package com.jobsity.bowling.game.state.impl;
 
 import com.jobsity.bowling.factory.FrameFactory;
-import com.jobsity.bowling.frame.Frame;
 import com.jobsity.bowling.game.BowlingGame;
 import com.jobsity.bowling.game.PlayTracker;
 import com.jobsity.bowling.game.parser.PlayRecord;
@@ -37,7 +36,7 @@ public class FinalFrameThirdChanceState extends DefaultChanceState {
 						tracker.getChancesArray()));
 		bowlingGame.endTurn();
 		
-		if (bowlingGame.getFrameNumber() > Frame.MAX_FRAMES) {
+		if (bowlingGame.getFrameNumber() > BowlingGame.MAX_FRAMES) {
 			bowlingGame.setState(bowlingGame.getGameOverState());
 		} else {
 			bowlingGame.setState(bowlingGame.getFinalFrameFirstChanceState());

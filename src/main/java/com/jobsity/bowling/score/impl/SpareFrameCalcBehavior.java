@@ -1,6 +1,7 @@
 package com.jobsity.bowling.score.impl;
 
 import com.jobsity.bowling.frame.Frame;
+import com.jobsity.bowling.game.BowlingGame;
 import com.jobsity.bowling.score.ScoreCalcBehavior;
 
 /**
@@ -23,7 +24,7 @@ public class SpareFrameCalcBehavior implements ScoreCalcBehavior {
 				frame.getNextFrame().getChances()[0] : 0;
 		
 		// A spare frame always counts 10;
-		return Frame.MAX_SCORE + nextChance;
+		return BowlingGame.MAX_SCORE + nextChance;
 	}
 	
 }

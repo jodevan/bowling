@@ -1,7 +1,7 @@
 package com.jobsity.bowling.validator;
 
 import com.jobsity.bowling.validator.impl.SpareFrameValidator;
-import com.jobsity.bowling.frame.Frame;
+import com.jobsity.bowling.game.BowlingGame;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -34,7 +34,7 @@ public class SpareFrameValidatorTest {
 		assertTrue(spareFrameValidator.isValid(5, new int[]{5, 5}));
 		assertTrue(spareFrameValidator.isValid(6, new int[]{2, 8}));
 		assertTrue(spareFrameValidator.isValid(7, 
-				new int[]{0, Frame.MAX_SCORE}));
+				new int[]{0, BowlingGame.MAX_SCORE}));
 	}
 
 	@Test

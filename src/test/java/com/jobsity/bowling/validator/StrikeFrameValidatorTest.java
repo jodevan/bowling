@@ -1,7 +1,7 @@
 package com.jobsity.bowling.validator;
 
 import com.jobsity.bowling.validator.impl.StrikeFrameValidator;
-import com.jobsity.bowling.frame.Frame;
+import com.jobsity.bowling.game.BowlingGame;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -29,7 +29,8 @@ public class StrikeFrameValidatorTest {
 
 	@Test
 	public void testValid1Chance() {
-		assertTrue(strikeFrameValidator.isValid(3, new int[]{Frame.MAX_SCORE}));
+		assertTrue(strikeFrameValidator.isValid(
+				3, new int[]{BowlingGame.MAX_SCORE}));
 	}
 
 	public void testValidNChances() {

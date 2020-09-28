@@ -1,7 +1,6 @@
 package com.jobsity.bowling.game.state.impl;
 
 import com.jobsity.bowling.factory.FrameFactory;
-import com.jobsity.bowling.frame.Frame;
 import com.jobsity.bowling.game.BowlingGame;
 import com.jobsity.bowling.game.PlayTracker;
 import com.jobsity.bowling.game.parser.PlayRecord;
@@ -37,9 +36,9 @@ public class InitialFrameFirstChanceState extends DefaultChanceState {
 			bowlingGame.incrementTurn();
 
 			// If it's a strike, we can't create this frame right away
-			if (chance == Frame.MAX_SCORE) {
+			if (chance == BowlingGame.MAX_SCORE) {
 				player.addFrame(FrameFactory.newInstance(1, 
-						new int[]{Frame.MAX_SCORE}));
+						new int[]{BowlingGame.MAX_SCORE}));
 			} else {
 				tracker.addChance(chance);
 				bowlingGame.setState(

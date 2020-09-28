@@ -2,6 +2,7 @@ package com.jobsity.bowling.frame.print.impl;
 
 import com.jobsity.bowling.frame.Frame;
 import com.jobsity.bowling.frame.print.PrintChancesBehavior;
+import com.jobsity.bowling.game.BowlingGame;
 
 /**
  *
@@ -26,6 +27,6 @@ public class PrintThreeChancesFrameBehavior implements PrintChancesBehavior {
 	}
 	
 	public String printChance(int chance) {
-		return chance == Frame.MAX_SCORE ? "X" : chance + "";
+		return chance == BowlingGame.MAX_SCORE ? "X" : chance + "";
 	}
 }

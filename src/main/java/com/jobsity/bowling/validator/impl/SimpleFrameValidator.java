@@ -1,6 +1,6 @@
 package com.jobsity.bowling.validator.impl;
 
-import com.jobsity.bowling.frame.Frame;
+import com.jobsity.bowling.game.BowlingGame;
 
 /**
  *
@@ -21,7 +21,7 @@ public class SimpleFrameValidator extends DefaultFrameValidator {
 
 		// The sum of chances has to be < 10. If it's 10, a SpareFrame
 		// validator has to be used instead
-		if (chances[0] + chances[1] >= Frame.MAX_SCORE) {
+		if (chances[0] + chances[1] >= BowlingGame.MAX_SCORE) {
 			return false;
 		}
 		
