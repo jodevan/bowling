@@ -19,10 +19,8 @@ public class PrintSpareFrameBehavior implements PrintChancesBehavior {
 
 		StringBuilder sb = new StringBuilder();
 		sb.append(chances[0]);
-		sb.append("\t");
+		sb.append(PrintChancesBehavior.PRINT_SEPARATOR);
 		sb.append("/");
-		
-		
 		return sb.toString();
 	}
 }

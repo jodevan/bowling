@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.IntStream;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -86,5 +88,44 @@ public class BowlingGame {
 			turn = 0;
 			frameNumber++;
 		}
+	}
+	
+	public void printGame() {
+		System.out.printf("%-10s|", "Frame");
+
+		IntStream.range(1, Frame.MAX_FRAMES + 1).forEach(
+				i -> System.out.printf(" %-3d |", i));
+		System.out.println();
+
+		this.getPlayers().forEach(player -> {
+			this.printPlayerGame(player.getName());
+		});
+	}
+
+	public void printPlayerGame(String playerName) {
+		List<String> pinfalls = new ArrayList<>();
+		List<String> scores = new ArrayList<>();
+		
+		Optional<Player> player = players.stream()
+				.filter(p -> p.getName().equals(playerName)).findFirst();
+		
+		if (player.isPresent()) {
+			Frame f = player.get().getFrame();
+			int score = 0;
+			while (f != null) {
+				pinfalls.add(String.format("%s | ", f.printChances()));
+				score += f.calcScore();
+				scores.add(String.format("%-3s | ", score));
+				f = f.getNextFrame();
+			}
+			System.out.println(player.get().getName());
+			System.out.print("Pinfalls  | ");
+			pinfalls.stream().forEach(System.out::print);
+			System.out.println();
+			System.out.print("Score     | ");
+			scores.stream().forEach(System.out::print);
+			System.out.println();
+		}
+
 	}
 }

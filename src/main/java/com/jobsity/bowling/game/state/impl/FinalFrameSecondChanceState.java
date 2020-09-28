@@ -40,6 +40,7 @@ public class FinalFrameSecondChanceState extends DefaultChanceState {
 					FrameFactory.newInstance(
 							bowlingGame.getFrameNumber(),
 							tracker.getChancesArray()));
+			tracker.resetChances();
 			bowlingGame.endTurn();
 			if (bowlingGame.getFrameNumber() > Frame.MAX_FRAMES) {
 				bowlingGame.setState(bowlingGame.getGameOverState());

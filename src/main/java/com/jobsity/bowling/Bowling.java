@@ -1,11 +1,13 @@
 package com.jobsity.bowling;
 
-import com.jobsity.bowling.game.parser.PlayRecordParser;
+import com.jobsity.bowling.game.BowlingGame;
 import com.jobsity.bowling.game.parser.exception.PlayRecordParseException;
+import com.jobsity.bowling.game.state.exception.InvalidGameStateException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 /**
@@ -15,7 +17,6 @@ import java.util.stream.Stream;
 public class Bowling {
 
 	public static void main(String args[]) {
-		
 		if (args.length == 0) {
 			System.out.printf("Usage: java %s <filepath>\n",
 					Bowling.class.getCanonicalName());
@@ -28,12 +29,21 @@ public class Bowling {
 			System.out.printf("File not found: %s\n", fileName);
 			System.exit(1);
 		}
+		
+		BowlingGame game = new BowlingGame();
+
+		AtomicInteger lineNumber = new AtomicInteger(0);
 
 		try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
 			stream.forEach(line -> {
 				try {
-					System.out.println(PlayRecordParser.parsePlayRecord(line).toString());
-				} catch (PlayRecordParseException e) {
+					lineNumber.incrementAndGet();
+					game.processPlayRecord(line);
+				} catch (PlayRecordParseException 
+						
+						| InvalidGameStateException e) {
+					System.out.printf("Error when processing line %d: %s\n", 
+							lineNumber.get(), line);
 					e.printStackTrace();
 					System.exit(1);
 				}
@@ -42,6 +52,7 @@ public class Bowling {
 			e.printStackTrace();
 			System.exit(1);
 		}
+		game.printGame();
 		System.exit(0);
 	}
 }

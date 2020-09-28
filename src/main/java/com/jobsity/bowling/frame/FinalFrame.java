@@ -18,7 +18,7 @@ public class FinalFrame extends Frame {
 				new int[]{chance1, chance2}, 
 				null,
 				new SingleFrameCalcBehavior(),
-				new PrintSimpleFrameBehavior(),
+				new PrintThreeChancesFrameBehavior(),
 				new SimpleFrameValidator());
 	}
 	

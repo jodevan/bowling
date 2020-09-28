@@ -62,11 +62,11 @@ public class FinalFrameTest {
 	
 	@Test
 	public void testPrint() {
-		assertEquals("1\t5", new FinalFrame(
+		assertEquals("1 5  ", new FinalFrame(
 				1, 1, 5).printChances());
-		assertEquals("X\t9\t1", new FinalFrame(
+		assertEquals("X 9 1", new FinalFrame(
 				1, Frame.MAX_SCORE, 9, 1).printChances());
-		assertEquals("X\tX\tX", new FinalFrame(
+		assertEquals("X X X", new FinalFrame(
 				1, Frame.MAX_SCORE, Frame.MAX_SCORE, Frame.MAX_SCORE)
 				.printChances());
 	}

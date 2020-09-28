@@ -50,8 +50,8 @@ public class SpareFrameTest {
 	
 	@Test
 	public void testPrint() {
-		assertEquals("0\t/", new SpareFrame(1, mockFrame, 0).printChances());
-		assertEquals("2\t/", new SpareFrame(1, mockFrame, 2).printChances());
+		assertEquals("0 /", new SpareFrame(1, mockFrame, 0).printChances());
+		assertEquals("2 /", new SpareFrame(1, mockFrame, 2).printChances());
 	}
 	
 }

@@ -46,9 +46,7 @@ public class SimpleFrameTest {
 	
 	@Test
 	public void testPrint() {
-		assertEquals("0\t0", 
-				new SimpleFrame(1, mockFrame, 0, 0).printChances());
-		assertEquals("2\t7", 
-				new SimpleFrame(1, mockFrame, 2, 7).printChances());
+		assertEquals("0 0", new SimpleFrame(1, mockFrame, 0, 0).printChances());
+		assertEquals("2 7", new SimpleFrame(1, mockFrame, 2, 7).printChances());
 	}
 }

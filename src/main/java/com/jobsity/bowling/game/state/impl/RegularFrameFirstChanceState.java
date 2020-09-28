@@ -40,7 +40,15 @@ public class RegularFrameFirstChanceState extends DefaultChanceState {
 					FrameFactory.newInstance(
 							bowlingGame.getFrameNumber(), 
 							new int[]{Frame.MAX_SCORE}));
+			tracker.resetChances();
 			bowlingGame.endTurn();
+			if (bowlingGame.getFrameNumber() < Frame.MAX_FRAMES) {
+				bowlingGame.setState(
+						bowlingGame.getRegularFrameFirstChanceState());
+			} else if (bowlingGame.getFrameNumber() == Frame.MAX_FRAMES) {
+				bowlingGame.setState(
+						bowlingGame.getFinalFrameFirstChanceState());
+			}
 		} else {
 			tracker.addChance(chance);
 			bowlingGame.setState(

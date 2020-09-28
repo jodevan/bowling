@@ -18,11 +18,10 @@ public class PrintThreeChancesFrameBehavior implements PrintChancesBehavior {
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append(printChance(chances[0]));
-		sb.append("\t");
+		sb.append(PrintChancesBehavior.PRINT_SEPARATOR);
 		sb.append(printChance(chances[1]));
-		sb.append("\t");
-		sb.append(printChance(chances[2]));
-		
+		sb.append(PrintChancesBehavior.PRINT_SEPARATOR);
+		sb.append(chances.length == 3 ? printChance(chances[2]) : " ");
 		return sb.toString();
 	}
 	

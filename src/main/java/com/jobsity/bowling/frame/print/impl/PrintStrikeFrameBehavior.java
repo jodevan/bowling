@@ -16,9 +16,10 @@ public class PrintStrikeFrameBehavior implements PrintChancesBehavior {
 		}
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("\t");
+		sb.append(PrintChancesBehavior.PRINT_SEPARATOR);
+		sb.append(PrintChancesBehavior.PRINT_SEPARATOR);
 		sb.append("X");
-		
+
 		return sb.toString();
 	}
 }
