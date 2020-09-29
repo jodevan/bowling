@@ -1,5 +1,6 @@
 package com.jobsity.bowling.game;
 
+import com.jobsity.bowling.frame.Chance;
 import com.jobsity.bowling.player.Player;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,18 +24,14 @@ import lombok.ToString;
 public class PlayTracker {
 	
 	private Player player;
-	private List<Integer> chances = new ArrayList<>();
+	private List<Chance> chances = new ArrayList<>();
 
-	public void addChance(Integer chance) {
+	public void addChance(Chance chance) {
 		chances.add(chance);
 	}
 	
-	public int[] getChancesArray() {
-		return chances.stream().mapToInt(i -> i).toArray();
-	}
-	
-	public int sumChances() {
-		return chances.stream().reduce(0, (c1, c2) -> c1 + c2);
+	public Chance[] getChancesArray() {
+		return chances.toArray(new Chance[]{});
 	}
 	
 	public void resetChances() {

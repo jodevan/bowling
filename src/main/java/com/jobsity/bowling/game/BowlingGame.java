@@ -40,6 +40,8 @@ public class BowlingGame {
 	 */
 	public static final int MAX_SCORE = 10;
 	
+	public static final int FAULT_INT_VALUE = -1;
+
 	private Map<String, PlayTracker> playTrackerMap = new LinkedHashMap<>();
 	private List<Player> players = new ArrayList<>();
 

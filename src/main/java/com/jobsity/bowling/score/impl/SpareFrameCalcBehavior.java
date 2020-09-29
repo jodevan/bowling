@@ -21,7 +21,7 @@ public class SpareFrameCalcBehavior implements ScoreCalcBehavior {
 		// its array
 		
 		int nextChance = frame.getNextFrame()  != null ? 
-				frame.getNextFrame().getChances()[0] : 0;
+				frame.getNextFrame().getChances()[0].getIntValue() : 0;
 		
 		// A spare frame always counts 10;
 		return BowlingGame.MAX_SCORE + nextChance;

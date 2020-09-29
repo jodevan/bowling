@@ -1,5 +1,6 @@
 package com.jobsity.bowling.frame.print.impl;
 
+import com.jobsity.bowling.frame.Chance;
 import com.jobsity.bowling.frame.Frame;
 import com.jobsity.bowling.frame.print.PrintChancesBehavior;
 import com.jobsity.bowling.game.BowlingGame;
@@ -15,7 +16,7 @@ public class PrintThreeChancesFrameBehavior implements PrintChancesBehavior {
 		if (frame == null) {
 			return new String();
 		}
-		int[] chances = frame.getChances();
+		Chance[] chances = frame.getChances();
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append(printChance(chances[0]));
@@ -28,7 +29,8 @@ public class PrintThreeChancesFrameBehavior implements PrintChancesBehavior {
 		return sb.toString();
 	}
 	
-	public String printChance(int chance) {
-		return chance == BowlingGame.MAX_SCORE ? "X" : chance + "";
+	public String printChance(Chance chance) {
+		return chance.getIntValue() == BowlingGame.MAX_SCORE ?
+				"X" : chance.getStrValue();
 	}
 }

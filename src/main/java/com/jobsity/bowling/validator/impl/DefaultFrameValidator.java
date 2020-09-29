@@ -1,5 +1,6 @@
 package com.jobsity.bowling.validator.impl;
 
+import com.jobsity.bowling.frame.Chance;
 import com.jobsity.bowling.game.BowlingGame;
 import com.jobsity.bowling.validator.Validator;
 
@@ -9,18 +10,19 @@ import com.jobsity.bowling.validator.Validator;
  */
 public abstract class DefaultFrameValidator implements Validator {
 	
+	public abstract boolean isValid(Chance... chances);
+	
 	@Override
-	public boolean isValid(int frameNumber, int[] chances) {
+	public boolean isValid(int frameNumber, Chance[] chances) {
 		return frameNumber > BowlingGame.MAX_FRAMES ? false : isValid(chances);
 	}
 	
-	public abstract boolean isValid(int chances[]);
-	
-	public boolean isChanceValid(int chance) {
+	public boolean isChanceValid(Chance chance) {
 		return isChanceValid(chance, BowlingGame.MAX_SCORE);
 	}
 
-	public boolean isChanceValid(int chance, int maxChanceAllowedValue) {
-		return chance >= 0 && chance <= maxChanceAllowedValue;
+	public boolean isChanceValid(Chance chance, int maxChanceAllowedValue) {
+		return chance.getIntValue() >= BowlingGame.FAULT_INT_VALUE
+				&& chance.getIntValue() <= maxChanceAllowedValue;
 	}
 }

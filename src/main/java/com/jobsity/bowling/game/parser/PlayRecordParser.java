@@ -1,5 +1,7 @@
 package com.jobsity.bowling.game.parser;
 
+import com.jobsity.bowling.frame.Chance;
+import com.jobsity.bowling.game.BowlingGame;
 import com.jobsity.bowling.game.parser.exception.PlayRecordParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,8 +15,8 @@ public class PlayRecordParser {
 	private static final Pattern pattern = 
 			Pattern.compile("^([A-Za-z]+)\\t([F0-9]+)$");
 	
-	private static final String FAULT_STRING = "F";
-			
+	public static final String FAULT_STRING = "F";
+
 	public static PlayRecord parsePlayRecord(String line) 
 			throws PlayRecordParseException {
 		
@@ -30,8 +32,9 @@ public class PlayRecordParser {
 			return PlayRecord
 					.builder()
 					.player(playerName)
-					.chance(FAULT_STRING.equals(score) ? 
-							0 : Integer.parseInt(score))
+					.chance(new Chance(FAULT_STRING.equals(score) ? 
+							BowlingGame.FAULT_INT_VALUE :
+							Integer.parseInt(score)))
 					.build();
 		} else {
 			throw new PlayRecordParseException("Invalid play record: "+ line);

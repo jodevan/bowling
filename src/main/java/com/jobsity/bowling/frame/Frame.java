@@ -4,6 +4,7 @@ import com.jobsity.bowling.exception.FrameCreationException;
 import com.jobsity.bowling.validator.Validator;
 import com.jobsity.bowling.score.ScoreCalcBehavior;
 import com.jobsity.bowling.frame.print.PrintChancesBehavior;
+import java.util.Arrays;
 
 /**
  * Represents an abstract frame. Each type of frame will provide its
@@ -21,7 +22,7 @@ public abstract class Frame {
 	/**
 	 * The number of chances of a frame
 	 */
-	protected final int[] chances;
+	protected final Chance[] chances;
 	
 	/**
 	 * The frame that follows the current frame. They become specially important
@@ -62,7 +63,7 @@ public abstract class Frame {
 	 */
 	protected Frame(
 			int frameNumber, 
-			int[] chances, 
+			Chance[] chances, 
 			Frame nextFrame, 
 			ScoreCalcBehavior calcBehavior, 
 			PrintChancesBehavior printBehavior, 
@@ -80,6 +81,16 @@ public abstract class Frame {
 		if (!validator.isValid(frameNumber, chances)) {
 			throw new FrameCreationException("Invalid parameters");
 		}
+	}
+
+	protected Frame(
+			int frameNumber, 
+			Chance[] chances, 
+			ScoreCalcBehavior calcBehavior, 
+			PrintChancesBehavior printBehavior, 
+			Validator validator) {
+		this(frameNumber, chances, null, calcBehavior, 
+				printBehavior, validator);
 	}
 
 	/**
@@ -101,7 +112,7 @@ public abstract class Frame {
 		return frameNumber;
 	}
 	
-	public int[] getChances() {
+	public Chance[] getChances() {
 		return chances;
 	}
 	

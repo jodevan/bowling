@@ -16,6 +16,7 @@ public class SingleFrameCalcBehavior implements ScoreCalcBehavior {
 			return 0;
 		}
 		return Arrays.stream(frame.getChances())
+				.map(chance -> chance.getIntValue())
 				.reduce(0, (chance1, chance2) -> chance1 + chance2);
 	}
 	

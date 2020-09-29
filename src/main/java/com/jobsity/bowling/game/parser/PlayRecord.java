@@ -1,5 +1,6 @@
 package com.jobsity.bowling.game.parser;
 
+import com.jobsity.bowling.frame.Chance;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,5 +21,5 @@ import lombok.ToString;
 public class PlayRecord {
 	
 	private String player;
-	private int chance;
+	private Chance chance;
 }

@@ -11,11 +11,23 @@ import com.jobsity.bowling.validator.impl.SpareFrameValidator;
  */
 public class SpareFrame extends Frame {
 	
-	public SpareFrame(int frameNumber, Frame nextFrame, int chance) {
+	public SpareFrame(int frameNumber, Frame nextFrame, Chance chance) {
 		super(
 				frameNumber,
-				new int[]{chance, BowlingGame.MAX_SCORE - chance}, 
+				new Chance[]{chance, 
+					new Chance(BowlingGame.MAX_SCORE - chance.getIntValue())}, 
 				nextFrame,
+				new SpareFrameCalcBehavior(),
+				new PrintSpareFrameBehavior(),
+				new SpareFrameValidator());
+	}
+
+	public SpareFrame(int frameNumber, Chance chance) {
+		super(
+				frameNumber,
+				new Chance[]{chance, 
+					new Chance(BowlingGame.MAX_SCORE - chance.getIntValue())}, 
+				null,
 				new SpareFrameCalcBehavior(),
 				new PrintSpareFrameBehavior(),
 				new SpareFrameValidator());

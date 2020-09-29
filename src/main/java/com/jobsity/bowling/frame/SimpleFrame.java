@@ -11,11 +11,22 @@ import com.jobsity.bowling.validator.impl.SimpleFrameValidator;
 public class SimpleFrame extends Frame {
 
 	public SimpleFrame(int frameNumber, Frame nextFrame, 
-			int chance1, int chance2) {
+			Chance chance1, Chance chance2) {
 		super(
 				frameNumber,
-				new int[]{chance1, chance2}, 
+				new Chance[]{chance1, chance2}, 
 				nextFrame,
+				new SingleFrameCalcBehavior(),
+				new PrintSimpleFrameBehavior(),
+				new SimpleFrameValidator());
+	}
+
+	public SimpleFrame(int frameNumber,
+			Chance chance1, Chance chance2) {
+		super(
+				frameNumber,
+				new Chance[]{chance1, chance2}, 
+				null,
 				new SingleFrameCalcBehavior(),
 				new PrintSimpleFrameBehavior(),
 				new SimpleFrameValidator());

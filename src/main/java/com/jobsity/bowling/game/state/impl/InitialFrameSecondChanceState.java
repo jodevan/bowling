@@ -1,6 +1,7 @@
 package com.jobsity.bowling.game.state.impl;
 
 import com.jobsity.bowling.factory.FrameFactory;
+import com.jobsity.bowling.frame.Chance;
 import com.jobsity.bowling.game.BowlingGame;
 import com.jobsity.bowling.game.PlayTracker;
 import com.jobsity.bowling.game.parser.PlayRecord;
@@ -29,7 +30,7 @@ public class InitialFrameSecondChanceState extends DefaultChanceState {
 		Map<String, PlayTracker> trackerMap = bowlingGame.getPlayTrackerMap();
 		PlayTracker tracker = trackerMap.get(playRecord.getPlayer());
 		
-		int chance = playRecord.getChance();
+		Chance chance = playRecord.getChance();
 		
 		Player player = bowlingGame.getTurnPlayer();
 		player.addFrame(FrameFactory.newInstance(

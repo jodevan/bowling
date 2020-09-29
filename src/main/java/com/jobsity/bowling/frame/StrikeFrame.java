@@ -14,8 +14,18 @@ public class StrikeFrame extends Frame {
 	public StrikeFrame(int frameNumber, Frame nextFrame) {
 		super(
 				frameNumber,
-				new int[]{BowlingGame.MAX_SCORE}, 
+				new Chance[]{new Chance(BowlingGame.MAX_SCORE)}, 
 				nextFrame, 
+				new StrikeFrameCalcBehavior(),
+				new PrintStrikeFrameBehavior(),
+				new StrikeFrameValidator());
+	}
+
+	public StrikeFrame(int frameNumber) {
+		super(
+				frameNumber,
+				new Chance[]{new Chance(BowlingGame.MAX_SCORE)}, 
+				null, 
 				new StrikeFrameCalcBehavior(),
 				new PrintStrikeFrameBehavior(),
 				new StrikeFrameValidator());

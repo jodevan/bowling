@@ -1,5 +1,6 @@
 package com.jobsity.bowling.game.state.impl;
 
+import com.jobsity.bowling.frame.Chance;
 import com.jobsity.bowling.game.BowlingGame;
 import com.jobsity.bowling.game.PlayTracker;
 import com.jobsity.bowling.game.parser.PlayRecord;
@@ -27,7 +28,7 @@ public class FinalFrameFirstChanceState extends DefaultChanceState {
 		Map<String, PlayTracker> trackerMap = bowlingGame.getPlayTrackerMap();
 		PlayTracker tracker = trackerMap.get(playRecord.getPlayer());
 		
-		int chance = playRecord.getChance();
+		Chance chance = playRecord.getChance();
 		
 		tracker.addChance(chance);
 		bowlingGame.setState(bowlingGame.getFinalFrameSecondChanceState());

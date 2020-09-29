@@ -1,5 +1,6 @@
 package com.jobsity.bowling.validator.impl;
 
+import com.jobsity.bowling.frame.Chance;
 import com.jobsity.bowling.game.BowlingGame;
 
 /**
@@ -9,9 +10,10 @@ import com.jobsity.bowling.game.BowlingGame;
 public class StrikeFrameValidator extends DefaultFrameValidator {
 
 	@Override
-	public boolean isValid(int[] chances) {
+	public boolean isValid(Chance... chances) {
 		
-		if (chances.length != 1 || chances[0] != BowlingGame.MAX_SCORE) {
+		if (chances.length != 1 || 
+				chances[0].getIntValue() != BowlingGame.MAX_SCORE) {
 			return false;
 		}
 		
