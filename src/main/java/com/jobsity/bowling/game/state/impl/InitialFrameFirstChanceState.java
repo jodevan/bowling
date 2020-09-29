@@ -6,8 +6,7 @@ import com.jobsity.bowling.game.BowlingGame;
 import com.jobsity.bowling.game.PlayTracker;
 import com.jobsity.bowling.game.parser.PlayRecord;
 import com.jobsity.bowling.game.state.exception.InvalidGameStateException;
-import com.jobsity.bowling.player.Player;
-import java.util.Map;
+import com.jobsity.bowling.game.Player;
 
 /**
  *
@@ -21,17 +20,13 @@ public class InitialFrameFirstChanceState extends DefaultChanceState {
 
 	@Override
 	public void play(PlayRecord playRecord) throws InvalidGameStateException {
-		Map<String, PlayTracker> trackerMap = bowlingGame.getPlayTrackerMap();
-		PlayTracker tracker = trackerMap.get(playRecord.getPlayer());
+		super.play(playRecord);
 		
-		String recordPlayerName = playRecord.getPlayer();
-		Chance chance = playRecord.getChance();
-		
-		if (tracker == null) {
+		if (playTracker == null) {
 			// It's the first player move ever in the game
-			tracker = new PlayTracker();
+			playTracker = new PlayTracker();
 			Player player = Player.builder().name(recordPlayerName).build();
-			tracker.setPlayer(player);
+			playTracker.setPlayer(player);
 
 			bowlingGame.addPlayer(player);
 			bowlingGame.incrementTurn();
@@ -41,11 +36,11 @@ public class InitialFrameFirstChanceState extends DefaultChanceState {
 				player.addFrame(FrameFactory.newInstance(1, 
 						new Chance[]{new Chance(BowlingGame.MAX_SCORE)}));
 			} else {
-				tracker.addChance(chance);
+				playTracker.addChance(chance);
 				bowlingGame.setState(
 						bowlingGame.getInitialFrameSecondChanceState());
 			}
-			trackerMap.put(recordPlayerName, tracker);
+			trackerMap.put(recordPlayerName, playTracker);
 		} else {
 			// If we get here, it's because the first user is playing again
 			// and that a new frame should start

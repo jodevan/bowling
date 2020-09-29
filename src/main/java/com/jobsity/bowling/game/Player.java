@@ -1,4 +1,4 @@
-package com.jobsity.bowling.player;
+package com.jobsity.bowling.game;
 
 import com.jobsity.bowling.frame.Frame;
 import lombok.Builder;

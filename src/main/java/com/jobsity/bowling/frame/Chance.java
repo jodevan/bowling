@@ -17,11 +17,11 @@ public class Chance {
 	}
 	
 	public int getIntValue() {
-		return value == BowlingGame.FAULT_INT_VALUE ? 0 : value;
+		return value == PlayRecordParser.FAULT_INT_VALUE ? 0 : value;
 	}
 	
 	public String getStrValue() {
-		return value == BowlingGame.FAULT_INT_VALUE ?
+		return value == PlayRecordParser.FAULT_INT_VALUE ?
 				PlayRecordParser.FAULT_STRING : "" + value;
 	}
 	

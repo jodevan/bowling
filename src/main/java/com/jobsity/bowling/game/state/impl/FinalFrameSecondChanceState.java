@@ -3,16 +3,14 @@ package com.jobsity.bowling.game.state.impl;
 import com.jobsity.bowling.factory.FrameFactory;
 import com.jobsity.bowling.frame.Chance;
 import com.jobsity.bowling.game.BowlingGame;
-import com.jobsity.bowling.game.PlayTracker;
 import com.jobsity.bowling.game.parser.PlayRecord;
 import com.jobsity.bowling.game.state.exception.InvalidGameStateException;
-import java.util.Map;
 
 /**
  *
  * @author jodevan
  */
-public class FinalFrameSecondChanceState extends DefaultChanceState {
+public class FinalFrameSecondChanceState extends NonInitialDefaultChanceState {
 
 	public FinalFrameSecondChanceState(BowlingGame bowlingGame) {
 		super(bowlingGame);
@@ -20,18 +18,12 @@ public class FinalFrameSecondChanceState extends DefaultChanceState {
 
 	@Override
 	public void play(PlayRecord playRecord) throws InvalidGameStateException {
+		super.play(playRecord);
 		
-		if (!validateTurnPlayer(playRecord)) {
-			throw new InvalidGameStateException(bowlingGame
-					.getTurnPlayer().getName(), playRecord.getPlayer());
-		}
-
-		Map<String, PlayTracker> trackerMap = bowlingGame.getPlayTrackerMap();
-		PlayTracker tracker = trackerMap.get(playRecord.getPlayer());
+		playTracker.addChance(playRecord.getChance());
 		
-		tracker.addChance(playRecord.getChance());
-		
-		if (Chance.sum(tracker.getChancesArray()) >= BowlingGame.MAX_SCORE) {
+		if (Chance.sum(
+				playTracker.getChancesArray()) >= BowlingGame.MAX_SCORE) {
 			// The player either scored a strike on his/her first attempt
 			// or scored a spair on his/her second second attempt
 			bowlingGame.setState(bowlingGame.getFinalFrameThirdChanceState());
@@ -39,8 +31,8 @@ public class FinalFrameSecondChanceState extends DefaultChanceState {
 			bowlingGame.getTurnPlayer().addFrame(
 					FrameFactory.newInstance(
 							bowlingGame.getFrameNumber(),
-							tracker.getChancesArray()));
-			tracker.resetChances();
+							playTracker.getChancesArray()));
+			playTracker.resetChances();
 			bowlingGame.endTurn();
 			if (bowlingGame.getFrameNumber() > BowlingGame.MAX_FRAMES) {
 				bowlingGame.setState(bowlingGame.getGameOverState());

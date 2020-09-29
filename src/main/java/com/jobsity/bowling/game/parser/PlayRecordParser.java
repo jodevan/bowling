@@ -16,6 +16,7 @@ public class PlayRecordParser {
 			Pattern.compile("^([A-Za-z]+)\\t([F0-9]+)$");
 	
 	public static final String FAULT_STRING = "F";
+	public static final int FAULT_INT_VALUE = -1;
 
 	public static PlayRecord parsePlayRecord(String line) 
 			throws PlayRecordParseException {
@@ -33,7 +34,7 @@ public class PlayRecordParser {
 					.builder()
 					.player(playerName)
 					.chance(new Chance(FAULT_STRING.equals(score) ? 
-							BowlingGame.FAULT_INT_VALUE :
+							FAULT_INT_VALUE :
 							Integer.parseInt(score)))
 					.build();
 		} else {

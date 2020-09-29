@@ -8,17 +8,20 @@ import com.jobsity.bowling.game.state.exception.InvalidGameStateException;
  *
  * @author jodevan
  */
-public class FinalFrameFirstChanceState extends NonInitialDefaultChanceState {
+public class NonInitialDefaultChanceState extends DefaultChanceState {
 
-	public FinalFrameFirstChanceState(BowlingGame bowlingGame) {
+	public NonInitialDefaultChanceState(BowlingGame bowlingGame) {
 		super(bowlingGame);
 	}
 
 	@Override
 	public void play(PlayRecord playRecord) throws InvalidGameStateException {
-		super.play(playRecord);
-		playTracker.addChance(chance);
-		bowlingGame.setState(bowlingGame.getFinalFrameSecondChanceState());
-	}
-}
+		if (!validateTurnPlayer(playRecord)) {
+			throw new InvalidGameStateException(bowlingGame
+					.getTurnPlayer().getName(), playRecord.getPlayer());
+		}
 
+		super.play(playRecord);
+	}
+	
+}
