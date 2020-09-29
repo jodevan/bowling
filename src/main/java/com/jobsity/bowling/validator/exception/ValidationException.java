@@ -1,4 +1,4 @@
-package com.jobsity.bowling.exception;
+package com.jobsity.bowling.validator.exception;
 
 /**
  *

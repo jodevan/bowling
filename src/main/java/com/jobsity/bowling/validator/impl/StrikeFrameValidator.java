@@ -11,12 +11,9 @@ public class StrikeFrameValidator extends DefaultFrameValidator {
 
 	@Override
 	public boolean isValid(Chance... chances) {
-		
-		if (chances.length != 1 || 
-				chances[0].getIntValue() != BowlingGame.MAX_SCORE) {
-			return false;
-		}
-		
-		return true;
+
+		return chances.length == 1
+				&& chances[0].getIntValue() == BowlingGame.MAX_SCORE;
+
 	}
 }

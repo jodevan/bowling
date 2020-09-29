@@ -40,7 +40,6 @@ public class Bowling {
 					lineNumber.incrementAndGet();
 					game.processPlayRecord(line);
 				} catch (PlayRecordParseException 
-						
 						| InvalidGameStateException e) {
 					System.out.printf("Error when processing line %d: %s\n", 
 							lineNumber.get(), line);
@@ -52,7 +51,14 @@ public class Bowling {
 			e.printStackTrace();
 			System.exit(1);
 		}
-		game.printGame();
+		
+		try {
+			game.printGame();
+		} catch (InvalidGameStateException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		
 		System.exit(0);
 	}
 }

@@ -23,7 +23,6 @@ public class SpareFrameValidator extends DefaultFrameValidator {
 			return false;
 		}
 		
-		return Chance.sum(chance1, chance2) == BowlingGame.MAX_SCORE ?
-				true : false;
+		return Chance.sum(chance1, chance2) == BowlingGame.MAX_SCORE;
 	}
 }

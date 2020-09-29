@@ -38,15 +38,15 @@ public class BowlingGame {
 	 * Constant to represent the max allowed score for a chance
 	 */
 	public static final int MAX_SCORE = 10;
-	
+
 	private Map<String, PlayTracker> playTrackerMap = new LinkedHashMap<>();
 	private List<Player> players = new ArrayList<>();
 
 	private int turn = -1;
 	private int frameNumber = 1;
-	
+
 	private BowlingState state;
-	
+
 	private final BowlingState initialFrameFirstChanceState;
 	private final BowlingState initialFrameSecondChanceState;
 	private final BowlingState regularFrameFirstChanceState;
@@ -67,29 +67,29 @@ public class BowlingGame {
 		gameOverState = new GameOverState(this);
 		state = initialFrameFirstChanceState;
 	}
-	
-	public void processPlayRecord(String line) 
+
+	public void processPlayRecord(String line)
 			throws PlayRecordParseException, InvalidGameStateException {
 		state.play(PlayRecordParser.parsePlayRecord(line));
 	}
-	
+
 	public void addPlayer(Player player) {
 		if (player != null) {
 			players.add(player);
 		}
 	}
-	
+
 	public Player getTurnPlayer() {
 		if (!playTrackerMap.isEmpty()) {
 			return players.get(turn);
 		}
 		return null;
 	}
-	
+
 	public void incrementTurn() {
 		turn = ++turn % players.size();
 	}
-	
+
 	public void endTurn() {
 		turn++;
 		if (turn == players.size()) {
@@ -97,8 +97,14 @@ public class BowlingGame {
 			frameNumber++;
 		}
 	}
-	
-	public void printGame() {
+
+	public void printGame() throws InvalidGameStateException {
+		
+		if (!state.equals(gameOverState)) {
+			throw new InvalidGameStateException(
+					"The game is not over yet. Please add more entries");
+		}
+
 		System.out.print("Frame\t\t");
 
 		IntStream.range(1, MAX_FRAMES + 1).forEach(
@@ -113,10 +119,10 @@ public class BowlingGame {
 	public void printPlayerGame(String playerName) {
 		List<String> pinfalls = new ArrayList<>();
 		List<String> scores = new ArrayList<>();
-		
+
 		Optional<Player> player = players.stream()
 				.filter(p -> p.getName().equals(playerName)).findFirst();
-		
+
 		if (player.isPresent()) {
 			Frame f = player.get().getFrame();
 			int score = 0;
