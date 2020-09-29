@@ -1,7 +1,6 @@
 package com.jobsity.bowling.game;
 
 import com.jobsity.bowling.frame.Chance;
-import com.jobsity.bowling.player.Player;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;

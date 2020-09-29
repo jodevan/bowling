@@ -3,7 +3,7 @@ package com.jobsity.bowling.game.state.impl;
 import com.jobsity.bowling.game.BowlingGame;
 import com.jobsity.bowling.game.parser.PlayRecord;
 import com.jobsity.bowling.game.state.BowlingState;
-import com.jobsity.bowling.player.Player;
+import com.jobsity.bowling.game.Player;
 
 /**
  *
