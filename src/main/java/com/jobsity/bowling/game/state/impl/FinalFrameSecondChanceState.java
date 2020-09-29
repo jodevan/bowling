@@ -10,7 +10,7 @@ import com.jobsity.bowling.game.state.exception.InvalidGameStateException;
  *
  * @author jodevan
  */
-public class FinalFrameSecondChanceState extends NonInitialDefaultChanceState {
+public class FinalFrameSecondChanceState extends DefaultFinalChanceState {
 
 	public FinalFrameSecondChanceState(BowlingGame bowlingGame) {
 		super(bowlingGame);
@@ -32,14 +32,7 @@ public class FinalFrameSecondChanceState extends NonInitialDefaultChanceState {
 					FrameFactory.newInstance(
 							bowlingGame.getFrameNumber(),
 							playTracker.getChancesArray()));
-			playTracker.resetChances();
-			bowlingGame.endTurn();
-			if (bowlingGame.getFrameNumber() > BowlingGame.MAX_FRAMES) {
-				bowlingGame.setState(bowlingGame.getGameOverState());
-			} else {
-				bowlingGame.setState(
-						bowlingGame.getFinalFrameFirstChanceState());
-			}
+			endTurn();
 		}
 	}
 }

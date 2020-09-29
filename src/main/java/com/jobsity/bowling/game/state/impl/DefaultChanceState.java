@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * @author jodevan
  */
-public abstract class DefaultChanceState implements BowlingState {
+abstract class DefaultChanceState implements BowlingState {
 	
 	protected BowlingGame bowlingGame;
 	

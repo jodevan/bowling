@@ -8,9 +8,9 @@ import com.jobsity.bowling.game.state.exception.InvalidGameStateException;
  *
  * @author jodevan
  */
-public class NonInitialDefaultChanceState extends DefaultChanceState {
+class DefaultNonInitialChanceState extends DefaultChanceState {
 
-	public NonInitialDefaultChanceState(BowlingGame bowlingGame) {
+	public DefaultNonInitialChanceState(BowlingGame bowlingGame) {
 		super(bowlingGame);
 	}
 
@@ -23,5 +23,17 @@ public class NonInitialDefaultChanceState extends DefaultChanceState {
 
 		super.play(playRecord);
 	}
-	
+
+	public void endTurn() {
+		playTracker.resetChances();
+		bowlingGame.endTurn();
+
+		if (bowlingGame.getFrameNumber() < BowlingGame.MAX_FRAMES) {
+			bowlingGame.setState(
+					bowlingGame.getRegularFrameFirstChanceState());
+		} else if (bowlingGame.getFrameNumber() == BowlingGame.MAX_FRAMES) {
+			bowlingGame.setState(
+					bowlingGame.getFinalFrameFirstChanceState());
+		}
+	}
 }
