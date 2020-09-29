@@ -8,7 +8,7 @@ import com.jobsity.bowling.game.state.exception.InvalidGameStateException;
  *
  * @author jodevan
  */
-public class FinalFrameFirstChanceState extends NonInitialDefaultChanceState {
+public class FinalFrameFirstChanceState extends DefaultFinalChanceState {
 
 	public FinalFrameFirstChanceState(BowlingGame bowlingGame) {
 		super(bowlingGame);

@@ -10,7 +10,7 @@ import com.jobsity.bowling.game.state.exception.InvalidGameStateException;
  * @author jodevan
  */
 public class InitialFrameSecondChanceState 
-		extends NonInitialDefaultChanceState {
+		extends DefaultNonInitialChanceState {
 
 	public InitialFrameSecondChanceState(BowlingGame bowlingGame) {
 		super(bowlingGame);
