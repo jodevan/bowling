@@ -98,25 +98,32 @@ public class BowlingGame {
 		}
 	}
 
-	public void printGame() throws InvalidGameStateException {
-		
+	public StringBuilder printGame() throws InvalidGameStateException {
+
+		StringBuilder stringBuilder = new StringBuilder();
+
 		if (!state.equals(gameOverState)) {
 			throw new InvalidGameStateException(
 					"The game is not over yet. Please add more entries");
 		}
 
-		System.out.print("Frame\t\t");
+		stringBuilder.append("Frame\t\t");
 
 		IntStream.range(1, MAX_FRAMES + 1).forEach(
-				i -> System.out.printf("%d\t\t", i));
-		System.out.println();
+				i -> stringBuilder.append(String.format("%d\t\t", i)));
 
 		this.getPlayers().forEach(player -> {
-			this.printPlayerGame(player.getName());
+			stringBuilder.append("\n");
+			stringBuilder.append(this.printPlayerGame(player.getName()));
 		});
+
+		return stringBuilder;
 	}
 
-	public void printPlayerGame(String playerName) {
+	public StringBuilder printPlayerGame(String playerName) {
+
+		StringBuilder stringBuilder = new StringBuilder();
+
 		List<String> pinfalls = new ArrayList<>();
 		List<String> scores = new ArrayList<>();
 
@@ -132,14 +139,59 @@ public class BowlingGame {
 				scores.add(String.format("%d\t\t", score));
 				f = f.getNextFrame();
 			}
-			System.out.println(player.get().getName());
-			System.out.print("Pinfalls\t");
-			pinfalls.stream().forEach(System.out::print);
-			System.out.println();
-			System.out.print("Score\t\t");
-			scores.stream().forEach(System.out::print);
-			System.out.println();
+			stringBuilder.append(player.get().getName());
+			stringBuilder.append("\n");
+			stringBuilder.append("Pinfalls\t");
+			pinfalls.stream().forEach(stringBuilder::append);
+			stringBuilder.append("\n");
+			stringBuilder.append("Score\t\t");
+			scores.stream().forEach(stringBuilder::append);
 		}
-
+		
+		return stringBuilder; 
 	}
+
+//	public void printGame() throws InvalidGameStateException {
+//		
+//		if (!state.equals(gameOverState)) {
+//			throw new InvalidGameStateException(
+//					"The game is not over yet. Please add more entries");
+//		}
+//
+//		System.out.print("Frame\t\t");
+//
+//		IntStream.range(1, MAX_FRAMES + 1).forEach(
+//				i -> System.out.printf("%d\t\t", i));
+//		System.out.println();
+//
+//		this.getPlayers().forEach(player -> {
+//			this.printPlayerGame(player.getName());
+//		});
+//	}
+//
+//	public void printPlayerGame(String playerName) {
+//		List<String> pinfalls = new ArrayList<>();
+//		List<String> scores = new ArrayList<>();
+//
+//		Optional<Player> player = players.stream()
+//				.filter(p -> p.getName().equals(playerName)).findFirst();
+//
+//		if (player.isPresent()) {
+//			Frame f = player.get().getFrame();
+//			int score = 0;
+//			while (f != null) {
+//				pinfalls.add(String.format("%s\t", f.printChances()));
+//				score += f.calcScore();
+//				scores.add(String.format("%d\t\t", score));
+//				f = f.getNextFrame();
+//			}
+//			System.out.println(player.get().getName());
+//			System.out.print("Pinfalls\t");
+//			pinfalls.stream().forEach(System.out::print);
+//			System.out.println();
+//			System.out.print("Score\t\t");
+//			scores.stream().forEach(System.out::print);
+//			System.out.println();
+//		}
+//	}
 }
