@@ -2,7 +2,7 @@ package com.jobsity.bowling.frame;
 
 import static org.junit.Assert.*;
 
-import com.jobsity.bowling.exception.FrameCreationException;
+import com.jobsity.bowling.frame.exception.FrameCreationException;
 import org.junit.Test;
 import org.junit.internal.runners.JUnit4ClassRunner;
 import org.junit.runner.RunWith;

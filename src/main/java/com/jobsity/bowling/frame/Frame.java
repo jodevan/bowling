@@ -1,6 +1,6 @@
 package com.jobsity.bowling.frame;
 
-import com.jobsity.bowling.exception.FrameCreationException;
+import com.jobsity.bowling.frame.exception.FrameCreationException;
 import com.jobsity.bowling.validator.Validator;
 import com.jobsity.bowling.score.ScoreCalcBehavior;
 import com.jobsity.bowling.frame.print.PrintChancesBehavior;

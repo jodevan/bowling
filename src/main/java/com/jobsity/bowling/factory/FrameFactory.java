@@ -1,6 +1,6 @@
 package com.jobsity.bowling.factory;
 
-import com.jobsity.bowling.exception.FrameCreationException;
+import com.jobsity.bowling.frame.exception.FrameCreationException;
 import com.jobsity.bowling.frame.Chance;
 import com.jobsity.bowling.frame.FinalFrame;
 import com.jobsity.bowling.frame.Frame;
