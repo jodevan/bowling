@@ -17,19 +17,22 @@ public class Bowling {
 	public static void main(String args[]) {
 
 		String fileName = args.length > 0 ? args[0] : null;
+		BowlingGame game = null;
+
 		
 		try {
-			processGame(fileName);
+			game = processGame(fileName);
+			System.out.println(game.printGame());
 		} catch (IOException | InvalidGameStateException 
 				| PlayRecordParseException e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
+		
 		System.exit(0);
-
 	}
 
-	public static void processGame(String fileName) throws IOException, 
+	public static BowlingGame processGame(String fileName) throws IOException, 
 			InvalidGameStateException, PlayRecordParseException {
 
 		if (fileName == null) {
@@ -50,7 +53,7 @@ public class Bowling {
 			game.processPlayRecord(scanner.nextLine());
 		}
 		scanner.close();
-
-		game.printGame();
+		
+		return game;
 	}
 }
