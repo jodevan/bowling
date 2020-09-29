@@ -5,6 +5,7 @@ import com.jobsity.bowling.validator.impl.DefaultFrameValidator;
 import static org.junit.Assert.*;
 
 import com.jobsity.bowling.game.BowlingGame;
+import com.jobsity.bowling.game.parser.PlayRecordParser;
 import com.jobsity.bowling.util.TestUtil;
 import org.junit.Test;
 import org.junit.internal.runners.JUnit4ClassRunner;
@@ -37,7 +38,7 @@ public class DefaultChanceValidatorTest {
 	@Test
 	public void testNegativeNonFaultValueChance() {
 		assertTrue(defaultFrameValidator.isChanceValid(
-				new Chance(BowlingGame.FAULT_INT_VALUE)));
+				new Chance(PlayRecordParser.FAULT_INT_VALUE)));
 	}
 
 	@Test

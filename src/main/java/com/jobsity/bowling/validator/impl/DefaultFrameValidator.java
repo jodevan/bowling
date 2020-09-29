@@ -2,6 +2,7 @@ package com.jobsity.bowling.validator.impl;
 
 import com.jobsity.bowling.frame.Chance;
 import com.jobsity.bowling.game.BowlingGame;
+import com.jobsity.bowling.game.parser.PlayRecordParser;
 import com.jobsity.bowling.validator.Validator;
 
 /**
@@ -22,7 +23,7 @@ public abstract class DefaultFrameValidator implements Validator {
 	}
 
 	public boolean isChanceValid(Chance chance, int maxChanceAllowedValue) {
-		return chance.getIntValue() >= BowlingGame.FAULT_INT_VALUE
+		return chance.getIntValue() >= PlayRecordParser.FAULT_INT_VALUE
 				&& chance.getIntValue() <= maxChanceAllowedValue;
 	}
 }

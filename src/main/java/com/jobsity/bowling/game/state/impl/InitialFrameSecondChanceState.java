@@ -1,19 +1,16 @@
 package com.jobsity.bowling.game.state.impl;
 
 import com.jobsity.bowling.factory.FrameFactory;
-import com.jobsity.bowling.frame.Chance;
 import com.jobsity.bowling.game.BowlingGame;
-import com.jobsity.bowling.game.PlayTracker;
 import com.jobsity.bowling.game.parser.PlayRecord;
 import com.jobsity.bowling.game.state.exception.InvalidGameStateException;
-import com.jobsity.bowling.game.Player;
-import java.util.Map;
 
 /**
  *
  * @author jodevan
  */
-public class InitialFrameSecondChanceState extends DefaultChanceState {
+public class InitialFrameSecondChanceState 
+		extends NonInitialDefaultChanceState {
 
 	public InitialFrameSecondChanceState(BowlingGame bowlingGame) {
 		super(bowlingGame);
@@ -21,22 +18,12 @@ public class InitialFrameSecondChanceState extends DefaultChanceState {
 
 	@Override
 	public void play(PlayRecord playRecord) throws InvalidGameStateException {
+		super.play(playRecord);
 
-		if (!validateTurnPlayer(playRecord)) {
-			throw new InvalidGameStateException(bowlingGame
-					.getTurnPlayer().getName(), playRecord.getPlayer());
-		}
-
-		Map<String, PlayTracker> trackerMap = bowlingGame.getPlayTrackerMap();
-		PlayTracker tracker = trackerMap.get(playRecord.getPlayer());
-		
-		Chance chance = playRecord.getChance();
-		
-		Player player = bowlingGame.getTurnPlayer();
-		player.addFrame(FrameFactory.newInstance(
+		bowlingGame.getTurnPlayer().addFrame(FrameFactory.newInstance(
 				bowlingGame.getFrameNumber(), 
-				tracker.getChances().get(0), chance));
-		tracker.resetChances();
+				playTracker.getChances().get(0), chance));
+		playTracker.resetChances();
 		bowlingGame.setState(bowlingGame.getInitialFrameFirstChanceState());
 	}
 }
