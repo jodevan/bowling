@@ -5,7 +5,7 @@ import com.jobsity.bowling.score.impl.SingleFrameCalcBehavior;
 import com.jobsity.bowling.validator.impl.SimpleFrameValidator;
 
 /**
- *
+ * Represents a regular frame
  * @author jodevan
  */
 public class SimpleFrame extends Frame {

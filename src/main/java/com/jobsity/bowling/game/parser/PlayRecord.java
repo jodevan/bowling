@@ -9,7 +9,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- *
+ * Once a line is read, it's converted to a PlayRecord that stores the read
+ * player name and chance
  * @author jodevan
  */
 @NoArgsConstructor

@@ -6,7 +6,7 @@ import com.jobsity.bowling.frame.print.PrintChancesBehavior;
 import com.jobsity.bowling.game.BowlingGame;
 
 /**
- *
+ * Behavior to print a three-chance frame, namely the final frame
  * @author jodevan
  */
 public class PrintThreeChancesFrameBehavior implements PrintChancesBehavior {

@@ -1,13 +1,12 @@
 package com.jobsity.bowling.game.parser;
 
 import com.jobsity.bowling.frame.Chance;
-import com.jobsity.bowling.game.BowlingGame;
 import com.jobsity.bowling.game.parser.exception.PlayRecordParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- *
+ * Parses a line
  * @author jodevan
  */
 public class PlayRecordParser {
@@ -18,6 +17,12 @@ public class PlayRecordParser {
 	public static final String FAULT_STRING = "F";
 	public static final int FAULT_INT_VALUE = -1;
 
+	/**
+	 * Parses a line
+	 * @param line Line to be parsed
+	 * @return An object that represents the line read
+	 * @throws PlayRecordParseException If the line is malformed
+	 */
 	public static PlayRecord parsePlayRecord(String line) 
 			throws PlayRecordParseException {
 		
@@ -38,7 +43,7 @@ public class PlayRecordParser {
 							Integer.parseInt(score)))
 					.build();
 		} else {
-			throw new PlayRecordParseException("Invalid play record: "+ line);
+			throw new PlayRecordParseException("Invalid play record: " + line);
 		}
 	}
 }

@@ -6,11 +6,11 @@ import com.jobsity.bowling.game.parser.PlayRecord;
 import com.jobsity.bowling.game.state.exception.InvalidGameStateException;
 
 /**
- *
+ * Represents the second move of the initial frame
  * @author jodevan
  */
 public class InitialFrameSecondChanceState 
-		extends DefaultNonInitialChanceState {
+		extends DefaultIntermediateFrameState {
 
 	public InitialFrameSecondChanceState(BowlingGame bowlingGame) {
 		super(bowlingGame);
@@ -20,6 +20,10 @@ public class InitialFrameSecondChanceState
 	public void play(PlayRecord playRecord) throws InvalidGameStateException {
 		super.play(playRecord);
 
+		/*
+		 * We can simply process the current frame and get to the initial move
+		 * of the first frame again. It'll decide where to go next
+		 */
 		bowlingGame.getTurnPlayer().addFrame(FrameFactory.newInstance(
 				bowlingGame.getFrameNumber(), 
 				playTracker.getChances().get(0), chance));

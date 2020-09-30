@@ -7,7 +7,6 @@ import lombok.EqualsAndHashCode;
 
 /**
  * Represents a player
- *
  * @author jodevan
  */
 @Data
@@ -19,6 +18,12 @@ public class Player {
 	@EqualsAndHashCode.Exclude
 	private Frame frame;
 	
+	/**
+	 * Adds the current frame. Since a frame has a reference to the next frame,
+	 * we don't need to keep an array of frames, they're simply stacked up on
+	 * the last player frame
+	 * @param newFrame Frame to be added
+	 */
 	public void addFrame(Frame newFrame) {
 		if (newFrame != null) {
 			if (frame == null) {

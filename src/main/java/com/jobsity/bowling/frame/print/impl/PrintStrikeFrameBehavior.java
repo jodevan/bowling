@@ -4,7 +4,7 @@ import com.jobsity.bowling.frame.Frame;
 import com.jobsity.bowling.frame.print.PrintChancesBehavior;
 
 /**
- *
+ * Behavior to print a strike frame
  * @author jodevan
  */
 public class PrintStrikeFrameBehavior implements PrintChancesBehavior {

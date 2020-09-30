@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
 @RunWith(JUnit4ClassRunner.class)
 public class ThreeChancesFrameValidatorTest {
 	
-	private Validator threeChancesFrameValidator = 
+	private ValidatorBehavior threeChancesFrameValidator = 
 			new ThreeChancesFrameValidator();
 
 	@Test

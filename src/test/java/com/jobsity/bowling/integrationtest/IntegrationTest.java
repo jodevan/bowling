@@ -4,7 +4,6 @@ import com.jobsity.bowling.Bowling;
 import com.jobsity.bowling.game.BowlingGame;
 import com.jobsity.bowling.game.parser.exception.PlayRecordParseException;
 import com.jobsity.bowling.game.state.exception.InvalidGameStateException;
-import java.io.File;
 import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Test;
@@ -78,7 +77,6 @@ public class IntegrationTest {
 	@Test
 	public void processJobsityExample() throws IOException, 
 			InvalidGameStateException, PlayRecordParseException {
-		System.out.println((new File(".")).getAbsolutePath());
 		BowlingGame game = 
 				Bowling.processGame("./src/main/resources/jobsity.txt");
 		StringBuilder stringBuilder = game.printGame();
@@ -88,7 +86,6 @@ public class IntegrationTest {
 	@Test
 	public void processStrikeExample() throws IOException, 
 			InvalidGameStateException, PlayRecordParseException {
-		System.out.println((new File(".")).getAbsolutePath());
 		BowlingGame game = 
 				Bowling.processGame("./src/main/resources/strikes.txt");
 		StringBuilder stringBuilder = game.printGame();
@@ -98,7 +95,6 @@ public class IntegrationTest {
 	@Test
 	public void processZeroesExample() throws IOException, 
 			InvalidGameStateException, PlayRecordParseException {
-		System.out.println((new File(".")).getAbsolutePath());
 		BowlingGame game = 
 				Bowling.processGame("./src/main/resources/zeroes.txt");
 		StringBuilder stringBuilder = game.printGame();
@@ -108,7 +104,6 @@ public class IntegrationTest {
 	@Test
 	public void processFaultsExample() throws IOException, 
 			InvalidGameStateException, PlayRecordParseException {
-		System.out.println((new File(".")).getAbsolutePath());
 		BowlingGame game = 
 				Bowling.processGame("./src/main/resources/faults.txt");
 		StringBuilder stringBuilder = game.printGame();

@@ -6,7 +6,7 @@ import com.jobsity.bowling.game.BowlingGame;
 import com.jobsity.bowling.score.ScoreCalcBehavior;
 
 /**
- *
+ * Behavior to calculate a strike frame
  * @author jodevan
  */
 public class StrikeFrameCalcBehavior implements ScoreCalcBehavior {

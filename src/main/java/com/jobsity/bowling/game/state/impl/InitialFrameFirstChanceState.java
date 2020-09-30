@@ -9,7 +9,7 @@ import com.jobsity.bowling.game.state.exception.InvalidGameStateException;
 import com.jobsity.bowling.game.Player;
 
 /**
- *
+ * Represents the first move of the initial frame
  * @author jodevan
  */
 public class InitialFrameFirstChanceState extends DefaultChanceState {
@@ -31,11 +31,19 @@ public class InitialFrameFirstChanceState extends DefaultChanceState {
 			bowlingGame.addPlayer(player);
 			bowlingGame.incrementTurn();
 
-			// If it's a strike, we can't create this frame right away
+			// If it's a strike, we can create this frame right away
 			if (chance.getIntValue() == BowlingGame.MAX_SCORE) {
 				player.addFrame(FrameFactory.newInstance(1, 
 						new Chance[]{new Chance(BowlingGame.MAX_SCORE)}));
+				/*
+				 * In this case, we'll be in this state until the same 
+				 * player plays again
+				 */
 			} else {
+				/*
+				 * Otherwise we should go to the second chance of the 
+				 * current player
+				 */
 				playTracker.addChance(chance);
 				bowlingGame.setState(
 						bowlingGame.getInitialFrameSecondChanceState());

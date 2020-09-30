@@ -5,7 +5,7 @@ import java.util.Arrays;
 import com.jobsity.bowling.score.ScoreCalcBehavior;
 
 /**
- *
+ * Behavior to calculate a regular two-chance frame
  * @author jodevan
  */
 public class SingleFrameCalcBehavior implements ScoreCalcBehavior {

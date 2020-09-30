@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
 @RunWith(JUnit4ClassRunner.class)
 public class SpareFrameValidatorTest {
 
-	private Validator spareFrameValidator = new SpareFrameValidator();
+	private ValidatorBehavior spareFrameValidator = new SpareFrameValidator();
 
 	@Test
 	public void testEmptyChances() {

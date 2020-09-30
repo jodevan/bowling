@@ -6,10 +6,10 @@ import com.jobsity.bowling.game.parser.PlayRecord;
 import com.jobsity.bowling.game.state.exception.InvalidGameStateException;
 
 /**
- *
+ * Represents the third and last move of the final frame
  * @author jodevan
  */
-public class FinalFrameThirdChanceState extends DefaultFinalChanceState {
+public class FinalFrameThirdChanceState extends DefaultFinalFrameState {
 
 	public FinalFrameThirdChanceState(BowlingGame bowlingGame) {
 		super(bowlingGame);
@@ -21,6 +21,10 @@ public class FinalFrameThirdChanceState extends DefaultFinalChanceState {
 		
 		playTracker.addChance(playRecord.getChance());
 
+		/*
+		 * Otherwise, we'll process the player current frame and let
+		 * endTurn() decide where to go next
+		 */
 		bowlingGame.getTurnPlayer().addFrame(
 				FrameFactory.newInstance(
 						bowlingGame.getFrameNumber(),

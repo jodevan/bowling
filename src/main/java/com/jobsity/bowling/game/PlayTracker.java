@@ -11,7 +11,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- *
+ * Keep track of the player info during a frame
  * @author jodevan
  */
 @NoArgsConstructor

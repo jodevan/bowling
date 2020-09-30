@@ -4,7 +4,7 @@ import com.jobsity.bowling.frame.Chance;
 import com.jobsity.bowling.game.BowlingGame;
 
 /**
- *
+ * Behavior to validate a three-chance frame
  * @author jodevan
  */
 public class ThreeChancesFrameValidator extends DefaultFrameValidator {

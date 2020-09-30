@@ -1,10 +1,9 @@
 package com.jobsity.bowling.frame;
 
 import com.jobsity.bowling.frame.exception.FrameCreationException;
-import com.jobsity.bowling.validator.Validator;
 import com.jobsity.bowling.score.ScoreCalcBehavior;
 import com.jobsity.bowling.frame.print.PrintChancesBehavior;
-import java.util.Arrays;
+import com.jobsity.bowling.validator.ValidatorBehavior;
 
 /**
  * Represents an abstract frame. Each type of frame will provide its
@@ -43,11 +42,11 @@ public abstract class Frame {
 	
 	/*
 	 * Note: This class use to instances of the strategy pattern: 
-	 * ScoreCalcBehavior and Validator. One option would be having class 
-	 * instances to store and use them, even being possible to switch the 
-	 * behaviors on the fly.
-	 * Since the validation behavior is used to determine the frame validity,
-	 * I opted by passing it in the constructor and validate it right away.
+	 * ScoreCalcBehavior, PrintChancesBehavior, and ValidatorBehavior. 
+	 * One option would be having class instances to store and use them, 
+	 * even being possible to switch the behaviors on the fly. However,
+	 * opted by defining all the behaviors of the frame during the instantion
+	 * time
 	 */
 
 	/**
@@ -57,9 +56,10 @@ public abstract class Frame {
 	 * @param nextFrame Next frame
 	 * @param calcBehavior Strategy use to calculate the current frame score
 	 * @param printBehavior Strategy use to print the current frame chances
-	 * @param validator It's not possible to instatiate invalid frames, i.e.,
-	 * frames with without chances or invalid chance values. This validator
-	 * is a represents a strategy to validade each frame according to its type.
+	 * @param validatorBehavior It's not possible to instatiate invalid frames, 
+	 * i.e., frames with without chances or invalid chance values. This 
+	 * validator represents a strategy to validade each frame according to 
+	 * its type.
 	 */
 	protected Frame(
 			int frameNumber, 
@@ -67,7 +67,7 @@ public abstract class Frame {
 			Frame nextFrame, 
 			ScoreCalcBehavior calcBehavior, 
 			PrintChancesBehavior printBehavior, 
-			Validator validator) {
+			ValidatorBehavior validatorBehavior) {
 		
 		this.frameNumber = frameNumber;
 		this.nextFrame = nextFrame;
@@ -75,10 +75,10 @@ public abstract class Frame {
 		this.scoreCalcBehavior = calcBehavior;
 		this.printChancesBehavior = printBehavior;
 		
-		if (validator == null) {
+		if (validatorBehavior == null) {
 			throw new FrameCreationException("Validator can't be null");
 		}
-		if (!validator.isValid(frameNumber, chances)) {
+		if (!validatorBehavior.isValid(frameNumber, chances)) {
 			throw new FrameCreationException("Invalid parameters");
 		}
 	}
@@ -88,7 +88,7 @@ public abstract class Frame {
 			Chance[] chances, 
 			ScoreCalcBehavior calcBehavior, 
 			PrintChancesBehavior printBehavior, 
-			Validator validator) {
+			ValidatorBehavior validator) {
 		this(frameNumber, chances, null, calcBehavior, 
 				printBehavior, validator);
 	}
@@ -103,6 +103,10 @@ public abstract class Frame {
 				scoreCalcBehavior.calculate(this) : 0;
 	}
 	
+	/**
+	 * Print the chances according to the frame type (spare, strike, etc.)
+	 * @return 
+	 */
 	public String printChances() {
 		return printChancesBehavior != null ? 
 				printChancesBehavior.print(this) : null;

@@ -10,7 +10,7 @@ import com.jobsity.bowling.game.state.exception.InvalidGameStateException;
 import java.util.Map;
 
 /**
- *
+ * Do a initial state processing that will be used by its subclasses
  * @author jodevan
  */
 abstract class DefaultChanceState implements BowlingState {

@@ -23,7 +23,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- *
+ * Represents the bowling game
  * @author jodevan
  */
 @Getter
@@ -39,14 +39,34 @@ public class BowlingGame {
 	 */
 	public static final int MAX_SCORE = 10;
 
+	/**
+	 * Keep track of the player info during a frame
+	 */
 	private Map<String, PlayTracker> playTrackerMap = new LinkedHashMap<>();
+	
+	/**
+	 * List of players
+	 */
 	private List<Player> players = new ArrayList<>();
 
+	/**
+	 * Keep track of the turns of the players and when a frame ends
+	 */
 	private int turn = -1;
+	
+	/**
+	 * Keep track of the current frame number
+	 */
 	private int frameNumber = 1;
 
+	/**
+	 * Keep track of the current game state. More info at each state class
+	 */
 	private BowlingState state;
 
+	/**
+	 * The possible game states
+	 */
 	private final BowlingState initialFrameFirstChanceState;
 	private final BowlingState initialFrameSecondChanceState;
 	private final BowlingState regularFrameFirstChanceState;
@@ -68,6 +88,14 @@ public class BowlingGame {
 		state = initialFrameFirstChanceState;
 	}
 
+	/**
+	 * Process each line from the input file and run each move according to
+	 * the current game state
+	 * @param line Line to be processed
+	 * @throws PlayRecordParseException If the line is malformed
+	 * @throws InvalidGameStateException If the line represents and invalid
+	 * game state
+	 */
 	public void processPlayRecord(String line)
 			throws PlayRecordParseException, InvalidGameStateException {
 		state.play(PlayRecordParser.parsePlayRecord(line));
@@ -150,48 +178,4 @@ public class BowlingGame {
 		
 		return stringBuilder; 
 	}
-
-//	public void printGame() throws InvalidGameStateException {
-//		
-//		if (!state.equals(gameOverState)) {
-//			throw new InvalidGameStateException(
-//					"The game is not over yet. Please add more entries");
-//		}
-//
-//		System.out.print("Frame\t\t");
-//
-//		IntStream.range(1, MAX_FRAMES + 1).forEach(
-//				i -> System.out.printf("%d\t\t", i));
-//		System.out.println();
-//
-//		this.getPlayers().forEach(player -> {
-//			this.printPlayerGame(player.getName());
-//		});
-//	}
-//
-//	public void printPlayerGame(String playerName) {
-//		List<String> pinfalls = new ArrayList<>();
-//		List<String> scores = new ArrayList<>();
-//
-//		Optional<Player> player = players.stream()
-//				.filter(p -> p.getName().equals(playerName)).findFirst();
-//
-//		if (player.isPresent()) {
-//			Frame f = player.get().getFrame();
-//			int score = 0;
-//			while (f != null) {
-//				pinfalls.add(String.format("%s\t", f.printChances()));
-//				score += f.calcScore();
-//				scores.add(String.format("%d\t\t", score));
-//				f = f.getNextFrame();
-//			}
-//			System.out.println(player.get().getName());
-//			System.out.print("Pinfalls\t");
-//			pinfalls.stream().forEach(System.out::print);
-//			System.out.println();
-//			System.out.print("Score\t\t");
-//			scores.stream().forEach(System.out::print);
-//			System.out.println();
-//		}
-//	}
 }

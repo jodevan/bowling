@@ -6,7 +6,7 @@ import com.jobsity.bowling.score.impl.SpareFrameCalcBehavior;
 import com.jobsity.bowling.validator.impl.SpareFrameValidator;
 
 /**
- *
+ * Represents a frame that's a spare
  * @author jodevan
  */
 public class SpareFrame extends Frame {

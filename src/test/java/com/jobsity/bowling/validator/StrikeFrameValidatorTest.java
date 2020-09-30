@@ -16,7 +16,7 @@ import org.junit.runner.RunWith;
 @RunWith(JUnit4ClassRunner.class)
 public class StrikeFrameValidatorTest {
 	
-	private Validator strikeFrameValidator = new StrikeFrameValidator();
+	private ValidatorBehavior strikeFrameValidator = new StrikeFrameValidator();
 
 	@Test
 	public void testEmptyChances() {

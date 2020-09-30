@@ -5,7 +5,7 @@ import com.jobsity.bowling.frame.Frame;
 import com.jobsity.bowling.frame.print.PrintChancesBehavior;
 
 /**
- *
+ * Behavior to print a spare frame
  * @author jodevan
  */
 public class PrintSpareFrameBehavior implements PrintChancesBehavior {

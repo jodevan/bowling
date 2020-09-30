@@ -6,7 +6,7 @@ import com.jobsity.bowling.score.impl.StrikeFrameCalcBehavior;
 import com.jobsity.bowling.validator.impl.StrikeFrameValidator;
 
 /**
- *
+ * Represents a frame that's a strike
  * @author jodevan
  */
 public class StrikeFrame extends Frame {

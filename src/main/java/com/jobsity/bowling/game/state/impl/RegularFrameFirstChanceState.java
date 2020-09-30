@@ -7,10 +7,11 @@ import com.jobsity.bowling.game.parser.PlayRecord;
 import com.jobsity.bowling.game.state.exception.InvalidGameStateException;
 
 /**
- *
+ * Represents the first move of an intermediate frame (not first and not last)
  * @author jodevan
  */
-public class RegularFrameFirstChanceState extends DefaultNonInitialChanceState {
+public class RegularFrameFirstChanceState 
+		extends DefaultIntermediateFrameState {
 
 	public RegularFrameFirstChanceState(BowlingGame bowlingGame) {
 		super(bowlingGame);
@@ -20,7 +21,10 @@ public class RegularFrameFirstChanceState extends DefaultNonInitialChanceState {
 	public void play(PlayRecord playRecord) throws InvalidGameStateException {
 		super.play(playRecord);
 		
-		// If it's a strike, we can't create this frame right away
+		/*
+		 * If it's a strike, we can create this frame right away and ends this
+		 * player turn
+		 */
 		if (chance.getIntValue() == BowlingGame.MAX_SCORE) {
 			bowlingGame.getTurnPlayer().addFrame(
 					FrameFactory.newInstance(
@@ -28,6 +32,7 @@ public class RegularFrameFirstChanceState extends DefaultNonInitialChanceState {
 							new Chance[]{new Chance(BowlingGame.MAX_SCORE)}));
 			endTurn();
 		} else {
+			// Otherwise we should go to the second player move
 			playTracker.addChance(chance);
 			bowlingGame.setState(
 					bowlingGame.getRegularFrameSecondChanceState());

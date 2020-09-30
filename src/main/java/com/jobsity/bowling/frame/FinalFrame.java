@@ -6,7 +6,7 @@ import com.jobsity.bowling.validator.impl.SimpleFrameValidator;
 import com.jobsity.bowling.validator.impl.ThreeChancesFrameValidator;
 
 /**
- *
+ * Represents the final frame of the game
  * @author jodevan
  */
 public class FinalFrame extends Frame {
